@@ -1,4 +1,5 @@
 Django
+Pillow
 docker-compose
 psycopg2-binary
 django-jalali
