@@ -1,0 +1,7 @@
+Django
+docker-compose
+psycopg2-binary
+django-jalali
+django-rest-framework
+pymemcache
+django-widget-tweaks
