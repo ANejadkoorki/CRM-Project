@@ -15,6 +15,9 @@ class OrganizationsProduct(models.Model):
     """
     name = models.CharField(max_length=50, verbose_name=_('Product name'))
 
+    def __str__(self):
+        return self.name
+
 
 class Organization(models.Model):
     """

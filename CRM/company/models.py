@@ -12,7 +12,7 @@ class CompanyProduct(models.Model):
     price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
     have_tax = models.BooleanField(default=False)
     pdf_catalog = models.FileField(validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
-                                   verbose_name=_('pdf catalog'))
+                                   verbose_name=_('pdf catalog'), blank=True, null=True)
     image_catalog = models.ImageField(verbose_name=_('image catalog'), blank=True, null=True)
     technical_desc = models.TextField(verbose_name=_('technical description'))
     usable_for_organizations_product = models.ManyToManyField(organmodels.OrganizationsProduct,
