@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
@@ -18,13 +19,9 @@ class AddOrganization(CreateView):
     def form_valid(self, form):
         form.instance.expert = self.request.user
         form.save()
-        return JsonResponse(data={
-            'success': 'True',
-            'success_message': 'The Organization Has Been Saved Successfully.'
-        }, status=201)
+        messages.success(self.request, 'The Organization Has Been Saved Successfully.')
+        return redirect('organization:add-organization')
 
     def form_invalid(self, form):
-        return JsonResponse(data={
-            'success': 'False',
-            'error_message': form.errors,
-        }, status=400)
+        messages.error(self.request, 'Failed, Please Fill The Inputs Successfully.')
+        return redirect('organization:add-organization')
