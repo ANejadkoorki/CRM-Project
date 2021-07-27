@@ -28,6 +28,10 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/venv/lib/python3.8/site-packages/django/forms/templates" />
+        <option value="$MODULE_DIR$/CRM/company/templates" />
+        <option value="$MODULE_DIR$/CRM/experts/templates" />
+        <option value="$MODULE_DIR$/CRM/organization/templates" />
+        <option value="$MODULE_DIR$/CRM/sellProcess/templates" />
       </list>
     </option>
   </component>
