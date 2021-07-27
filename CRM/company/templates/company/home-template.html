@@ -9,84 +9,84 @@
     <title>{{ base_title }}{% block page_title %}Home{% endblock %}</title>
 </head>
 <body>
-    {#    nav bar part#}
-    {% block nav %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">CRM System</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    {% block home_navactive %}
-                        <li class="nav-item active ">
-                    {% endblock %}
-                    <a class="nav-link" href="{% url 'company:home' %}">Home </a>
-                    </li>
-                    {% if not user.is_authenticated %}
-                        {% block login_navlink %}
-                            <li class="nav-item">
-                        {% endblock %}
-                    <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
-                    </li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                        {% block organ_navactive %}
-                            <li class="nav-item dropdown">
-                        {% endblock %}
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Organizations
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
-                        <a class="dropdown-item" href="#">Organizations List</a>
-                    </div>
-                    </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
-                        </li>
-                    {% endif %}
-
-                </ul>
-            </div>
-        </nav>
-    {% endblock %}
-    <div class="container mt-4">
-        {# Project`s messeages #}
-        {% block page_messages %}
-            <div class="mt-3 mb-3">
-                <div class="col-12">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-primary alert-dismissible">
-                                {{ message }}
-                                <button type="button" data-dismiss="alert" class="close">&times;</button>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-        {% endblock %}
-        {#  messages ends... #}
-        {#templates contents : #}
-        <div class="row">
-            <div class="col">
-                {% block page_base_detail %}
-                    <h1 class="mt-lg-5 mr-3 text-left display-1 text-info">CRM :</h1>
-                    <h2 class="ml-lg-5 text-left display-4 text-info">Customer Relationship Management</h2>
+{#    nav bar part#}
+{% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">CRM System</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% block home_navactive %}
+                    <li class="nav-item active ">
                 {% endblock %}
-            </div>
-            <div class="col">
-                <div class="mt-lg-5">
-                    {% block page_content %}{% endblock %}
+                <a class="nav-link" href="{% url 'company:home' %}">Home </a>
+                </li>
+                {% if not user.is_authenticated %}
+                    {% block login_navlink %}
+                        <li class="nav-item">
+                    {% endblock %}
+                <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    {% block organ_navactive %}
+                        <li class="nav-item dropdown">
+                    {% endblock %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Organizations
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
+                    <a class="dropdown-item" href="#">Organizations List</a>
                 </div>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+<div class="container mt-4">
+    {# Project`s messeages #}
+    {% block page_messages %}
+        <div class="mt-3 mb-3" >
+            <div class="col-12" id="page_message">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-primary alert-dismissible">
+                            {{ message }}
+                            <button type="button" data-dismiss="alert" class="close">&times;</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+    {#  messages ends... #}
+    <div class="row">
+        <div class="col">
+            {% block page_base_detail %}
+                <h1 class="mt-lg-5 mr-3 text-left display-1 text-info">CRM :</h1>
+                <h2 class="ml-lg-5 text-left display-4 text-info">Customer Relationship Management</h2>
+            {% endblock %}
+        </div>
+        <div class="col">
+            <div class="mt-lg-5">
+                {#templates contents : #}
+                {% block page_content %}{% endblock %}
             </div>
         </div>
     </div>
+</div>
 
 
-    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    {% block page_scripts %}
-        {#    templates Scripts will be here#}
-    {% endblock %}
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% block page_scripts %}
+    {#    templates Scripts will be here#}
+{% endblock %}
 </body>
 </html>
