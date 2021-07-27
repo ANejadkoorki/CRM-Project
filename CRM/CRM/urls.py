@@ -20,5 +20,6 @@ from company import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.HomeView.as_view()),
-    path('company/', include('company.urls'))
+    path('company/', include('company.urls')),
+    path('experts/', include('experts.urls')),
 ]
