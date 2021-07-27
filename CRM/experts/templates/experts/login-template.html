@@ -1,14 +1,10 @@
 {% extends 'company/home-template.html' %}
 {% block page_title %}Login{% endblock %}
-{% block home_navlink %}
-    <li class="nav-item  ">
-        <a class="nav-link" href="{% url 'company:home' %}">Home </a>
-    </li>
+{% block home_navactive %}
+    <li class="nav-item ">
 {% endblock %}
 {% block login_navlink %}
     <li class="nav-item active">
-        <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
-    </li>
 {% endblock %}
 {% block page_content %}
     <h1 class="text-info">Login :</h1>

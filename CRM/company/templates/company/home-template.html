@@ -5,29 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{% static 'css/bootstrap.min.css' %} " rel="stylesheet">
+    <link href="{% static 'css/styles.css' %} " rel="stylesheet">
     <title>{{ base_title }}{% block page_title %}Home{% endblock %}</title>
 </head>
 <body>
-<div class="p-3 mb-2 bg-dark  text-light" style="height: 100vh">
     {#    nav bar part#}
     {% block nav %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">CRM System</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    {% block home_navlink %}
+                    {% block home_navactive %}
                         <li class="nav-item active ">
-                            <a class="nav-link" href="{% url 'company:home' %}">Home </a>
-                        </li>
                     {% endblock %}
+                    <a class="nav-link" href="{% url 'company:home' %}">Home </a>
+                    </li>
                     {% if not user.is_authenticated %}
                         {% block login_navlink %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
-                            </li>
                         {% endblock %}
+                    <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
+                    </li>
                     {% endif %}
                     {% if user.is_authenticated %}
+                        {% block organ_navactive %}
+                            <li class="nav-item dropdown">
+                        {% endblock %}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Organizations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
+                        <a class="dropdown-item" href="#">Organizations List</a>
+                    </div>
+                    </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
                         </li>
@@ -69,13 +81,12 @@
             </div>
         </div>
     </div>
-</div>
 
-<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-{% block page_scripts %}
-    {#    templates Scripts will be here#}
-{% endblock %}
 
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% block page_scripts %}
+        {#    templates Scripts will be here#}
+    {% endblock %}
 </body>
 </html>

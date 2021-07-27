@@ -22,4 +22,5 @@ urlpatterns = [
     path('',views.HomeView.as_view()),
     path('company/', include('company.urls')),
     path('experts/', include('experts.urls')),
+    path('organization/', include('organization.urls')),
 ]

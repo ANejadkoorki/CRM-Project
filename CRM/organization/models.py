@@ -24,7 +24,7 @@ class Organization(models.Model):
         represents an organization object contains organization`s characteristics
     """
     province = models.CharField(max_length=20, verbose_name=_('Province'))
-    organization_name = models.CharField(max_length=50, verbose_name=_('Organization name'))
+    organization_name = models.CharField(max_length=50, verbose_name=_('Organization name'), unique=True)
     telephone = models.CharField(validators=[landline_phone_regex], max_length=11,
                                  verbose_name=_('Organization telephone'))
     workers_qty = models.PositiveIntegerField(default=1, verbose_name=_('Workers Quantity'))
@@ -35,3 +35,9 @@ class Organization(models.Model):
     representative_email = models.EmailField(verbose_name=_('Representative email'))
     created_on = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('Creation time'))
     expert = models.ForeignKey('auth.User', verbose_name=_('Expert'), on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = [
+            'organization_name',
+            'expert'
+        ]
