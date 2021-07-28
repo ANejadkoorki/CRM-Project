@@ -38,7 +38,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
                     <a class="dropdown-item" href="{% url 'organization:organization-list' %}">Organizations List</a>
-                    <a class="dropdown-item" href="#">Add Organizations Product</a>
+                    <a class="dropdown-item" href="{% url 'organization:add-organizations-product' %}">Add Organizations Product</a>
                 </div>
                 {% block company_navactive %}
                     <li class="nav-item dropdown">

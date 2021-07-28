@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'company/home-template.html' %}
+{% block page_title %}Add Organizations Product{% endblock %}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block organ_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+{% block page_content %}
+    <h1 class="h3 text-info">Add New Organizations Product : </h1>
+    <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name" class="text-info">Product Name : </label>
+            <input id="name" name="name" class="form-control text-primary" type="text"
+                   placeholder="Please Enter The Product`s Name">
+        </div>
+        <button class="btn btn-info mb-3" type="submit">Add</button>
+    </form>
+{% endblock %}

@@ -35,14 +35,22 @@ class OrganizationList(LoginRequiredMixin, ListView):
     paginate_by = 4
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
     model = models.OrganizationsProduct
     template_name = 'organization/add-organizations-prod.html'
     fields = (
-        'name'
+        'name',
     )
 
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, f"{self.request.POST.get('name')} Saved Successfully.")
+        return redirect('organization:add-organizations-product')
 
+    def form_invalid(self, form):
+        messages.error(self.request, 'Failed! Please Enter the Product Name Carefully.')
+        return redirect('organization:add-organizations-product')
 
 
 class OrganizationDetail(LoginRequiredMixin, DetailView):
