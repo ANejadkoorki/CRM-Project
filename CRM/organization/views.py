@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from company import models as company_models
 
 from . import models, forms
 # Create your views here.
@@ -37,5 +38,13 @@ class OrganizationList(LoginRequiredMixin, ListView):
 class OrganizationDetail(LoginRequiredMixin, DetailView):
     model = models.Organization
     template_name = 'organization/organization-detail.html'
+    extra_context = dict()
+
+    def get_our_company_offer(self):
+        offers = company_models.CompanyProduct.objects.filter(
+            usable_for_organizations_product=self.object.mmanufactured_product)
+        self.extra_context.update({
+            'our_company_offers': offers
+        })
 
 

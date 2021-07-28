@@ -8,8 +8,8 @@
 {% block crm_desc %}{% endblock %}
 {% block page_content %}
     {# headers #}
-    <h1 class="h1 text-info">Organization Detail : <span
-            class="text-dark bg-light">{{ object.organization_name }}</span></h1>
+    <h1 class="h1 text-info">Organization Detail : </h1>
+    <h3 class="text-dark bg-light">{{ object.organization_name }}</h3>
     {# buttons #}
     <div class="row mt-4 justify-content-center">
         <div class="col-md-auto">
@@ -63,7 +63,14 @@
                         </div>
                     {% endfor %}
                 </td>
-                <td class="text-dark bg-light">####</td>
+                <td class="text-dark bg-light">
+                     {{ object.get_our_company_offer }}
+                    {% for item in our_company_offers %}
+                        <div class="row">
+                            {{ forloop.counter }}-{{ item }}
+                        </div>
+                    {% endfor %}
+                </td>
             </tr>
             </tbody>
         </table>
@@ -110,31 +117,4 @@
             </tbody>
         </table>
     </div>
-
-
 {% endblock %}
-
-
-
-
-
-
-
-{##}
-{##}
-<div>
-    <h3 class="h3 text-info">Manufactured Products : </h3>
-    <span>&nbsp;&nbsp;&nbsp;</span>
-    <h4 class="h4 text-dark bg-light">
-        {% for item in  object.manufactured_product.values_list %}
-            ({{ item.1 }})
-        {% endfor %}
-    </h4>
-</div>
-
-
-{#<div>#}
-{#    <h3 class="h3 text-info ">Date Of Register : </h3>#}
-{#    <span>&nbsp;&nbsp;&nbsp;</span>#}
-{#    <h4 class="h4 text-dark bg-light">{{ object.created_on|jdate:"%Y-%m-%d" }}</h4>#}
-{#</div>#}
