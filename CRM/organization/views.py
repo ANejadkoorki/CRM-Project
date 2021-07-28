@@ -35,6 +35,16 @@ class OrganizationList(LoginRequiredMixin, ListView):
     paginate_by = 4
 
 
+class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
+    model = models.OrganizationsProduct
+    template_name = 'organization/add-organizations-prod.html'
+    fields = (
+        'name'
+    )
+
+
+
+
 class OrganizationDetail(LoginRequiredMixin, DetailView):
     model = models.Organization
     template_name = 'organization/organization-detail.html'

@@ -38,6 +38,18 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
                     <a class="dropdown-item" href="{% url 'organization:organization-list' %}">Organizations List</a>
+                    <a class="dropdown-item" href="#">Add Organizations Product</a>
+                </div>
+                {% block company_navactive %}
+                    <li class="nav-item dropdown">
+                {% endblock %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Company
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'company:add-company-product' %}">Add Product</a>
+                    <a class="dropdown-item" href="#">Products List</a>
                 </div>
                 </li>
                     <li class="nav-item">
@@ -52,7 +64,7 @@
 <div class="container mt-4">
     {# Project`s messeages #}
     {% block page_messages %}
-        <div class="mt-3 mb-3" >
+        <div class="mt-3 mb-3">
             <div class="col-12" id="page_message">
                 {% if messages %}
                     {% for message in messages %}
@@ -68,12 +80,12 @@
     {#  messages ends... #}
     <div class="row">
         {% block crm_desc %}
-        <div class="col">
-            {% block page_base_detail %}
-                <h1 class="mt-lg-5 mr-3 text-left display-1 text-info">CRM :</h1>
-                <h2 class="ml-lg-5 text-left display-4 text-info">Customer Relationship Management</h2>
-            {% endblock %}
-        </div>
+            <div class="col">
+                {% block page_base_detail %}
+                    <h1 class="mt-lg-5 mr-3 text-left display-1 text-info">CRM :</h1>
+                    <h2 class="ml-lg-5 text-left display-4 text-info">Customer Relationship Management</h2>
+                {% endblock %}
+            </div>
         {% endblock %}
         <div class="col-md-auto">
             <div class="mt-lg-5">
