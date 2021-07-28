@@ -64,12 +64,10 @@
                     {% endfor %}
                 </td>
                 <td class="text-dark bg-light">
-                    {% for item in object.manufactured_product.all %}
-                        {% for company_product in item.companyproduct_set.all %}
-                            <div class="row justify-content-center">
-                                {{ company_product.product_name }}
-                            </div>
-                        {% endfor %}
+                    {% for item in our_offer_products %}
+                        <div class="row justify-content-center">
+                            {{ forloop.counter }}-{{ item.product_name }}
+                        </div>
                     {% endfor %}
                 </td>
             </tr>

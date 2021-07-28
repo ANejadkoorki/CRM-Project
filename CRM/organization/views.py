@@ -39,3 +39,15 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
     model = models.Organization
     template_name = 'organization/organization-detail.html'
 
+    def get_offer_products(self):
+        organization = self.get_object()
+        offers = set()
+        for organization_product in organization.manufactured_product.all():
+            for company_product in organization_product.companyproduct_set.all():
+                offers.add(company_product)
+        return offers
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['our_offer_products'] = self.get_offer_products()
+        return context
