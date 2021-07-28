@@ -58,17 +58,18 @@
                 <td class="text-dark bg-light">{{ object.expert.username }}</td>
                 <td class="text-dark bg-light">
                     {% for item in object.manufactured_product.values_list %}
-                        <div class="row">
+                        <div class="row justify-content-center">
                             {{ forloop.counter }}-{{ item.1 }}
                         </div>
                     {% endfor %}
                 </td>
                 <td class="text-dark bg-light">
-                     {{ object.get_our_company_offer }}
-                    {% for item in our_company_offers %}
-                        <div class="row">
-                            {{ forloop.counter }}-{{ item }}
-                        </div>
+                    {% for item in object.manufactured_product.all %}
+                        {% for company_product in item.companyproduct_set.all %}
+                            <div class="row justify-content-center">
+                                {{ company_product.product_name }}
+                            </div>
+                        {% endfor %}
                     {% endfor %}
                 </td>
             </tr>

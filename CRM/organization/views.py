@@ -38,13 +38,4 @@ class OrganizationList(LoginRequiredMixin, ListView):
 class OrganizationDetail(LoginRequiredMixin, DetailView):
     model = models.Organization
     template_name = 'organization/organization-detail.html'
-    extra_context = dict()
-
-    def get_our_company_offer(self):
-        offers = company_models.CompanyProduct.objects.filter(
-            usable_for_organizations_product=self.object.mmanufactured_product)
-        self.extra_context.update({
-            'our_company_offers': offers
-        })
-
 
