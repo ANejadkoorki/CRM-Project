@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from . import models, forms
 # Create your views here.
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -32,3 +32,10 @@ class OrganizationList(LoginRequiredMixin, ListView):
     model = models.Organization
     template_name = 'organization/list-organization.html'
     paginate_by = 4
+
+
+class OrganizationDetail(LoginRequiredMixin, DetailView):
+    model = models.Organization
+    template_name = 'organization/organization-detail.html'
+
+
