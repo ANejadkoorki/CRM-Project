@@ -1,31 +1,37 @@
 {% extends 'company/home-template.html' %}
-{% block page_title %}Organizations List{% endblock %}
+{% block page_title %}Company Products List{% endblock %}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
-{% block organ_navactive %}
+{% block company_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
 {% block page_content %}
-    <h1 class="h1 text-info mb-3">Organization`s List : </h1>
+    <h1 class="h1 text-info mb-3">Company Product`s List : </h1>
     <div class="col">
         <div class="row ">
             <table class="table table-dark table-bordered">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Organization Name</th>
-                    <th scope="col">Registrar</th>
-                    <th scope="col">Representative</th>
-                    <th scope="col">Operation</th>
+                    <th scope="col">Product`s Name</th>
+                    <th scope="col">Product`s Price</th>
+                    <th scope="col">Have Tax</th>
+                    <th scope="col">Catalog</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for object in object_list %}
                     <tr>
                         <th scope="row">{{ object.pk }}</th>
-                        <td><a href="{% url 'organization:organization-detail' object.pk %}" class="text-info">{{ object.organization_name }}</a></td>
-                        <td>{{ object.expert }}</td>
-                        <td>{{ object.representative_full_name }}</td>
-                        <td><a href="#">Record follow-up</a></td>
+                        <td><a href="#" class="text-info">{{ object.product_name }}</a></td>
+                        <td>{{ object.price }}</td>
+                        <td>
+                            {% if object.have_tax %}
+                                <span class="justify-content-center">✅</span>
+                            {% else %}
+                                <span>❌</span>
+                            {% endif %}
+                        </td>
+                        <td><a href="#">DOWNLOAD</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

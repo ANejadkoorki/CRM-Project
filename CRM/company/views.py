@@ -43,3 +43,9 @@ class AddCompanyProduct(LoginRequiredMixin, CreateView):
     def form_invalid(self, form):
         messages.error(self.request, "Failed. Please Fill The Inputs Correctly.")
         return redirect('company:add-company-product')
+
+
+class CompanyProductsList(LoginRequiredMixin, ListView):
+    model = models.CompanyProduct
+    template_name = 'company/list-company-prod-.html'
+    paginate_by = 3

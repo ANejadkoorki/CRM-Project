@@ -8,6 +8,7 @@ app_name = 'company'
 urlpatterns = [
     path('home/', views.HomeView.as_view(), name='home'),
     path('add-company-product/', views.AddCompanyProduct.as_view(), name='add-company-product'),
+    path('list-company-product/', views.CompanyProductsList.as_view(), name='list-company-product'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
