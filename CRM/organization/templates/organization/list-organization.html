@@ -1,0 +1,30 @@
+{% extends 'company/home-template.html' %}
+{% block page_title %}Organizations List{% endblock %}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block organ_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+{% block page_content %}
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Organization Name</th>
+            <th scope="col">Registrar</th>
+            <th scope="col">Representative</th>
+            <th scope="col">Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+            <tr>
+                <th scope="row">{{ object.pk }}</th>
+                <td>{{ object.organization_name }}</td>
+                <td>{{ object.expert }}</td>
+                <td>{{ object.representative_full_name }}</td>
+                <td><a href="#">Record follow-up</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
