@@ -8,7 +8,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from . import models
 from organization import models as organ_models
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 
 class HomeView(View):
@@ -54,3 +54,30 @@ class CompanyProductsList(LoginRequiredMixin, ListView):
 class CompanyProductDetail(LoginRequiredMixin, DetailView):
     model = models.CompanyProduct
     template_name = 'company/company-product-detail.html'
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class EditCompanyProduct(LoginRequiredMixin, UpdateView):
+    model = models.CompanyProduct
+    template_name = 'company/edit-company-prod.html'
+    extra_context = {'OrganizationProducts': organ_models.OrganizationsProduct.objects.all()}
+    fields = (
+        'product_name',
+        'price',
+        'have_tax',
+        'pdf_catalog',
+        'image_catalog',
+        'technical_desc',
+        'usable_for_organizations_product',
+    )
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, f"{self.request.POST.get('product_name')} Has Been Updated Successfully.")
+        pk = self.get_object().pk
+        return redirect('company:company-product-detail', pk)
+
+    def form_invalid(self, form):
+        messages.success(self.request, f"Failed.Please Fill The Inputs Carefully.")
+        pk = self.get_object().pk
+        return redirect('company:company-product-edit', pk)

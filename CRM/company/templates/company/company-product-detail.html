@@ -15,10 +15,7 @@
             <a class="btn btn-secondary" href="{% url 'company:list-company-product' %}">Return to Previous Page</a>
         </div>
         <div class="col-md-auto">
-            <a class="btn btn-secondary" href="#">Pro Forma Invoice Issuance</a>
-        </div>
-        <div class="col-md-auto">
-            <a class="btn btn-secondary" href="#">Edit</a>
+            <a class="btn btn-secondary" href="{% url 'company:company-product-edit' object.pk %}">Edit</a>
         </div>
     </div>
     {# detalis : first table #}
