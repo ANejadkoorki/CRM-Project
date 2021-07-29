@@ -8,7 +8,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from . import models
 from organization import models as organ_models
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 
 class HomeView(View):
@@ -49,3 +49,8 @@ class CompanyProductsList(LoginRequiredMixin, ListView):
     model = models.CompanyProduct
     template_name = 'company/list-company-prod-.html'
     paginate_by = 3
+
+
+class CompanyProductDetail(LoginRequiredMixin, DetailView):
+    model = models.CompanyProduct
+    template_name = 'company/company-product-detail.html'

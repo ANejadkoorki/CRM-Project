@@ -22,7 +22,7 @@
                 {% for object in object_list %}
                     <tr>
                         <th scope="row">{{ object.pk }}</th>
-                        <td><a href="#" class="text-info">{{ object.product_name }}</a></td>
+                        <td><a href="{% url 'company:company-product-detail' object.pk %}" class="text-info">{{ object.product_name }}</a></td>
                         <td>{{ object.price }}</td>
                         <td>
                             {% if object.have_tax %}

@@ -1,4 +1,5 @@
 {% extends 'company/home-template.html' %}
+{% load l10n %}
 {% block page_title %}Edit Organization{% endblock %}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
@@ -25,8 +26,8 @@
         </div>
         <div class="form-group">
             <label for="workers_qty" class="text-info">Workers Quantity : </label>
-            <input id="workers_qty" name="workers_qty" class="form-control text-primary" type="text"
-                    value="{{ object.workers_qty }}"  placeholder="Please Enter The Organization`s Workers Quantity">
+            <input id="workers_qty" name="workers_qty" class="form-control text-primary" type="number"
+                    value="{{ object.workers_qty|unlocalize }}"  placeholder="Please Enter The Organization`s Workers Quantity">
         </div>
         <div class="form-group">
             <label for="manufactured_product" class="text-info">Choose Manufactured Product : </label>
