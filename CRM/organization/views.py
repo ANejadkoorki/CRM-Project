@@ -11,6 +11,9 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddOrganization(LoginRequiredMixin, CreateView):
+    """
+        this view is used to create an Organization model object
+    """
     model = models.Organization
     form_class = forms.OrganizationForm
     template_name = 'organization/add-organization-template.html'
@@ -28,6 +31,9 @@ class AddOrganization(LoginRequiredMixin, CreateView):
 
 
 class OrganizationList(LoginRequiredMixin, ListView):
+    """
+        this view is used to list Organization model objects
+    """
     model = models.Organization
     template_name = 'organization/list-organization.html'
     paginate_by = 4
@@ -35,6 +41,9 @@ class OrganizationList(LoginRequiredMixin, ListView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class EditOrganization(LoginRequiredMixin, UpdateView):
+    """
+        this view is used to update an Organization model object
+    """
     model = models.Organization
     template_name = 'organization/edit_organization.html'
     extra_context = {'ManufacturedProducts': models.OrganizationsProduct.objects.all()}
@@ -63,6 +72,9 @@ class EditOrganization(LoginRequiredMixin, UpdateView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
+    """
+        this view is used to create an OrganizationProduct model object
+    """
     model = models.OrganizationsProduct
     template_name = 'organization/add-organizations-prod.html'
     fields = (
@@ -80,9 +92,13 @@ class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
 
 
 class OrganizationDetail(LoginRequiredMixin, DetailView):
+    """
+        this view is used to get an Organization model object details
+    """
     model = models.Organization
     template_name = 'organization/organization-detail.html'
 
+    # this method returns our company offers for each organization
     def get_offer_products(self):
         organization = self.get_object()
         offers = set()
@@ -91,6 +107,7 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
                 offers.add(company_product)
         return offers
 
+    # returning new context that have 'our_offer_products'
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['our_offer_products'] = self.get_offer_products()

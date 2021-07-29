@@ -22,6 +22,9 @@ class HomeView(View):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class AddCompanyProduct(LoginRequiredMixin, CreateView):
+    """
+        this view used to create an CompanyProduct model object
+    """
     model = models.CompanyProduct
     template_name = 'company/add-company-product-template.html'
     extra_context = {'OrganizationsProducts': organ_models.OrganizationsProduct.objects.all()}
@@ -46,18 +49,27 @@ class AddCompanyProduct(LoginRequiredMixin, CreateView):
 
 
 class CompanyProductsList(LoginRequiredMixin, ListView):
+    """
+        this view used to List CompanyProduct model objects
+    """
     model = models.CompanyProduct
     template_name = 'company/list-company-prod-.html'
     paginate_by = 3
 
 
 class CompanyProductDetail(LoginRequiredMixin, DetailView):
+    """
+        this view used to get an CompanyProduct model object details
+    """
     model = models.CompanyProduct
     template_name = 'company/company-product-detail.html'
 
 
 @method_decorator(csrf_exempt, name='dispatch')
 class EditCompanyProduct(LoginRequiredMixin, UpdateView):
+    """
+        this view used to update an CompanyProduct model object
+    """
     model = models.CompanyProduct
     template_name = 'company/edit-company-prod.html'
     extra_context = {'OrganizationProducts': organ_models.OrganizationsProduct.objects.all()}

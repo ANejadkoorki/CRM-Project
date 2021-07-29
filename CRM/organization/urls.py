@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
+# application name
 app_name = 'organization'
 
+# urls:
 urlpatterns = [
     path('add-organization/', views.AddOrganization.as_view(), name='add-organization'),
     path('add-organizations-product/', views.AddOrganizationsProduct.as_view(), name='add-organizations-product'),

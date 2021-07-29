@@ -15,6 +15,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ExpertLogin(FormView):
+    """
+        this view used for authenticating and logging in an expert
+    """
     form_class = forms.LoginForm
     template_name = 'experts/login-template.html'
 
@@ -40,6 +43,9 @@ class ExpertLogin(FormView):
 
 
 class ExpertLogout(RedirectView):
+    """
+        this view used for logging out an expert
+    """
     def get(self, request, *args, **kwargs):
         messages.success(self.request, f'{self.request.user.username} Have Been Logged out Successfully.')
         logout(self.request)
