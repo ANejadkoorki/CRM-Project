@@ -4,8 +4,6 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from company import models as company_models
-
 from . import models, forms
 # Create your views here.
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
