@@ -8,7 +8,7 @@ from company import models as company_models
 
 from . import models, forms
 # Create your views here.
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -33,6 +33,34 @@ class OrganizationList(LoginRequiredMixin, ListView):
     model = models.Organization
     template_name = 'organization/list-organization.html'
     paginate_by = 4
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class EditOrganization(LoginRequiredMixin, UpdateView):
+    model = models.Organization
+    template_name = 'organization/edit_organization.html'
+    extra_context = {'ManufacturedProducts': models.OrganizationsProduct.objects.all()}
+    fields = (
+        'province',
+        'organization_name',
+        'telephone',
+        'workers_qty',
+        'manufactured_product',
+        'representative_full_name',
+        'representative_phone_number',
+        'representative_email',
+    )
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, f"{self.request.POST.get('organization_name')} Has Been Updated Successfully.")
+        pk = self.get_object().pk
+        return redirect('organization:organization-detail', pk)
+
+    def form_invalid(self, form):
+        messages.success(self.request, f"Failed.Please Fill The Inputs Carefully.")
+        pk = self.get_object().pk
+        return redirect('organization:edit-organization', pk)
 
 
 @method_decorator(csrf_exempt, name='dispatch')

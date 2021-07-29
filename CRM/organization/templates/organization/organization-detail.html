@@ -18,9 +18,11 @@
         <div class="col-md-auto">
             <a class="btn btn-secondary" href="#">Pro Forma Invoice Issuance</a>
         </div>
-        <div class="col-md-auto">
-            <a class="btn btn-secondary" href="#">Edit</a>
-        </div>
+        {% if request.user == object.expert %}
+            <div class="col-md-auto">
+                <a class="btn btn-secondary" href="{% url 'organization:edit-organization' object.pk %}">Edit</a>
+            </div>
+        {% endif %}
     </div>
     {# detalis : first table #}
     <div class="row mt-4 justify-content-center">
