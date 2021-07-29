@@ -2,32 +2,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {# page encoding #}
     <meta charset="UTF-8">
+
+    {# bootstrap css styles and responsive page  #}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{% static 'css/bootstrap.min.css' %} " rel="stylesheet">
     <link href="{% static 'css/styles.css' %} " rel="stylesheet">
+
+    {# page title handling and block #}
     <title>{{ base_title }}{% block page_title %}Home{% endblock %}</title>
 </head>
+
+
 <body>
-{#    nav bar part#}
+{# nav bar handling and block #}
 {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">CRM System</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                {# home nav item #}
+                {# home nav item activision block  #}
                 {% block home_navactive %}
                     <li class="nav-item active ">
                 {% endblock %}
                 <a class="nav-link" href="{% url 'company:home' %}">Home </a>
                 </li>
+
+                {# log in nav item #}
                 {% if not user.is_authenticated %}
+                    {# log in nav item activision block  #}
                     {% block login_navlink %}
                         <li class="nav-item">
                     {% endblock %}
                 <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
                 </li>
                 {% endif %}
+
+                {# if user authenticated can see bellow items #}
                 {% if user.is_authenticated %}
+                    {# organization drop down nav item #}
+                    {# organization nav item activision block  #}
                     {% block organ_navactive %}
                         <li class="nav-item dropdown">
                     {% endblock %}
@@ -35,11 +51,17 @@
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Organizations
                 </a>
+
+                {# organization drop down options #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
                     <a class="dropdown-item" href="{% url 'organization:organization-list' %}">Organizations List</a>
-                    <a class="dropdown-item" href="{% url 'organization:add-organizations-product' %}">Add Organizations Product</a>
+                    <a class="dropdown-item" href="{% url 'organization:add-organizations-product' %}">Add Organizations
+                        Product</a>
                 </div>
+
+                {# company drop down nav item #}
+                {# company nav item activision block  #}
                 {% block company_navactive %}
                     <li class="nav-item dropdown">
                 {% endblock %}
@@ -47,10 +69,14 @@
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Company
                 </a>
+
+                {# company drop down options #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'company:add-company-product' %}">Add Product</a>
                     <a class="dropdown-item" href="{% url 'company:list-company-product' %}">Products List</a>
                 </div>
+
+                {# log out nav item #}
                 </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
@@ -62,7 +88,8 @@
     </nav>
 {% endblock %}
 <div class="container mt-4">
-    {# Project`s messeages #}
+
+    {# pages messeages #}
     {% block page_messages %}
         <div class="mt-3 mb-3">
             <div class="col-12" id="page_message">
@@ -77,8 +104,10 @@
             </div>
         </div>
     {% endblock %}
-    {#  messages ends... #}
+
+    {# page headers #}
     <div class="row">
+        {# CRM description located in the middle of page #}
         {% block crm_desc %}
             <div class="col">
                 {% block page_base_detail %}
@@ -87,18 +116,23 @@
                 {% endblock %}
             </div>
         {% endblock %}
+
+        {# pages contents #}
         <div class="col-md-auto">
             <div class="mt-lg-5">
                 {#templates contents : #}
                 {% block page_content %}{% endblock %}
             </div>
         </div>
+
     </div>
 </div>
 
-
+{# JQuery and bootstrap js scripts #}
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+{# pages scripts #}
 {% block page_scripts %}
     {#    templates Scripts will be here#}
 {% endblock %}

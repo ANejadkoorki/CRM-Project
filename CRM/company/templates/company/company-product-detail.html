@@ -1,14 +1,22 @@
 {% extends 'company/home-template.html' %}
+{# page title #}
 {% block page_title %}Product Detail{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block company_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# block of crm-description located in home page #}
 {% block crm_desc %}{% endblock %}
+
+{# page content #}
 {% block page_content %}
     {# headers #}
     <h1 class="h1 text-info">Company Product Detail : </h1>
     <h3 class="text-dark bg-light">{{ object.product_name }}</h3>
+
     {# buttons #}
     <div class="row mt-4 justify-content-center">
         <div class="col-md-auto">
@@ -18,6 +26,7 @@
             <a class="btn btn-secondary" href="{% url 'company:company-product-edit' object.pk %}">Edit</a>
         </div>
     </div>
+
     {# detalis : first table #}
     <div class="row mt-4 justify-content-center">
         <table class="table table-dark table-bordered">
@@ -49,6 +58,7 @@
             </tbody>
         </table>
     </div>
+
     {# detalis : second table #}
     <div class="row mt-4 justify-content-center">
         <table class="table table-dark table-bordered">
@@ -64,6 +74,7 @@
             </tbody>
         </table>
     </div>
+
     {# detalis : third table #}
     <div class="row mt-4 justify-content-center">
         <table class="table table-dark table-bordered">

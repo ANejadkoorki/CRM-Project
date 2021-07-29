@@ -1,15 +1,24 @@
 {% extends 'company/home-template.html' %}
 {% load mytags %}
+
+{# page title #}
 {% block page_title %}Organizations Detail{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block organ_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# crm description block located in home page #}
 {% block crm_desc %}{% endblock %}
+
+{# page content #}
 {% block page_content %}
     {# headers #}
     <h1 class="h1 text-info">Organization Detail : </h1>
     <h3 class="text-dark bg-light">{{ object.organization_name }}</h3>
+
     {# buttons #}
     <div class="row mt-4 justify-content-center">
         <div class="col-md-auto">
@@ -24,6 +33,7 @@
             </div>
         {% endif %}
     </div>
+
     {# detalis : first table #}
     <div class="row mt-4 justify-content-center">
         <table class="table table-dark table-bordered">
@@ -45,6 +55,7 @@
             </tbody>
         </table>
     </div>
+
     {# detalis : second table #}
     <div class="row mt-4 justify-content-center">
         <table class="table table-dark table-bordered">
@@ -76,6 +87,7 @@
             </tbody>
         </table>
     </div>
+
     {# representative details #}
     <h3 class="h1 text-info">Representative Details:</h3>
     <div class="row mt-4 justify-content-center">
@@ -96,6 +108,7 @@
             </tbody>
         </table>
     </div>
+
     {# follow-up history #}
     <h3 class="h1 text-info">Follow-up History:</h3>
     <div class="row mt-4 justify-content-center">

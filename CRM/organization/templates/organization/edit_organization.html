@@ -1,34 +1,53 @@
 {% extends 'company/home-template.html' %}
 {% load l10n %}
+
+{# page title #}
 {% block page_title %}Edit Organization{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block organ_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# page content #}
 {% block page_content %}
+    {# page header #}
     <h1 class="h1 text-info mb-3">Edit Organization : </h1>
+
+    {# form : edit organization #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+        {# organization province editing #}
         <div class="form-group">
             <label for="province" class="text-info">Province : </label>
             <input id="province" name="province" class="form-control text-primary" type="text"
                    value="{{ object.province }}" placeholder="Please Enter The Organization`s Province">
         </div>
+
+        {# organization name editing #}
         <div class="form-group">
             <label for="organization_name" class="text-info">Name : </label>
             <input id="organization_name" name="organization_name" class="form-control text-primary" type="text"
                    value="{{ object.organization_name }}" placeholder="Please Enter The Organization Name">
         </div>
+
+        {# organization telephone editing #}
         <div class="form-group">
             <label for="telephone" class="text-info">Telephone : </label>
             <input id="telephone" name="telephone" class="form-control text-primary" type="text"
                    value="{{ object.telephone }}" placeholder="Please Enter The Organization Telephone">
         </div>
+
+        {# organization workers quantity editing #}
         <div class="form-group">
             <label for="workers_qty" class="text-info">Workers Quantity : </label>
             <input id="workers_qty" name="workers_qty" class="form-control text-primary" type="number"
                     value="{{ object.workers_qty|unlocalize }}"  placeholder="Please Enter The Organization`s Workers Quantity">
         </div>
+
+        {# organization manufactures products editing #}
         <div class="form-group">
             <label for="manufactured_product" class="text-info">Choose Manufactured Product : </label>
             <select multiple class="form-control" id="manufactured_product" name="manufactured_product">
@@ -41,6 +60,8 @@
                 {% endfor %}
             </select>
         </div>
+
+        {# organization representative fullname editing #}
         <div class="form-group">
             <label for="representative_full_name" class="text-info">Representative Fullname : </label>
             <input id="representative_full_name" name="representative_full_name" class="form-control text-primary"
@@ -48,6 +69,8 @@
                    value="{{ object.representative_full_name }}"
                    placeholder="Enter The Organization`s Representative Fullname">
         </div>
+
+        {# organization representative phone number editing #}
         <div class="form-group">
             <label for="representative_phone_number" class="text-info">Representative Phone Number : </label>
             <input id="representative_phone_number" name="representative_phone_number" class="form-control text-primary"
@@ -55,6 +78,8 @@
                    value="{{ object.representative_phone_number }}"
                    placeholder="Enter The Organization`s Representative Phone Number">
         </div>
+
+        {# organization representative email editing #}
         <div class="form-group">
             <label for="representative_email" class="text-info">Representative Email : </label>
             <input id="representative_email" name="representative_email" class="form-control text-primary"
@@ -62,6 +87,8 @@
                    value="{{ object.representative_email }}"
                    placeholder="Enter The Organization`s Representative Email">
         </div>
+
+        {# form submit button #}
         <button class="btn btn-info mb-3" type="submit">Edit</button>
     </form>
 {% endblock %}

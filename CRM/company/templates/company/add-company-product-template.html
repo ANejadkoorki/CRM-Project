@@ -1,41 +1,63 @@
 {% extends 'company/home-template.html' %}
+{# page title #}
 {% block page_title %}Add Product{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block company_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# page content #}
 {% block page_content %}
+    {# header of page #}
     <h1 class="h1 text-info">Add Company Product : </h1>
+
+    {# form : add company product #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+        {# product name #}
         <div class="form-group">
             <label for="product_name" class="text-info">Product Name : </label>
             <input id="product_name" name="product_name" class="form-control text-primary" type="text"
                    placeholder="Please Enter The Products`s Name">
         </div>
+
+        {# product price #}
         <div class="form-group">
             <label for="price" class="text-info">Price : </label>
             <input id="price" name="price" class="form-control text-primary" type="number"
                    placeholder="Please Enter The Products`s Price">
         </div>
+
+        {# product taxability #}
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="True" id="have_tax" name="have_tax">
             <label class="form-check-label text-danger" for="have_tax">
                 This Product Have Tax
             </label>
         </div>
+
+        {# product PDF catalog #}
         <div class="form-group">
             <label for="pdf_catalog" class="text-info mt-3">PDF Catalog : </label>
             <input type="file" class="form-control-file text-info" id="pdf_catalog" name="pdf_catalog">
         </div>
+
+        {# product image catalog #}
         <div class="form-group">
             <label for="image_catalog" class="text-info mt-3">Image Catalog : </label>
             <input type="file" class="form-control-file text-info" id="image_catalog" name="image_catalog">
         </div>
+
+        {# product technical description #}
         <div class="form-group">
             <label for="technical_desc" class="text-info">Technical Description :</label>
             <textarea class="form-control" id="technical_desc" name="technical_desc" rows="4"></textarea>
         </div>
+
+        {# product usability #}
         <div class="form-group">
             <label for="usable_for_organizations_product" class="text-info">This Product is Useful For : </label>
             <select multiple class="form-control" id="usable_for_organizations_product"
@@ -45,6 +67,8 @@
                 {% endfor %}
             </select>
         </div>
+
+        {# form submit button #}
         <button class="btn btn-info mb-3" type="submit">Add</button>
     </form>
 {% endblock %}

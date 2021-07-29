@@ -1,27 +1,39 @@
 {% extends 'company/home-template.html' %}
 {% load l10n %}
+
+{# page title #}
 {% block page_title %}Edit Product{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block company_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# page content #}
 {% block page_content %}
+    {# page header #}
     <h1 class="h1 text-info">Edit Company Product : </h1>
+
+    {# form : edit company product #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
+        {# product name editing #}
         <div class="form-group">
             <label for="product_name" class="text-info">Product Name : </label>
             <input id="product_name" name="product_name" class="form-control text-primary" type="text"
                    value="{{ object.product_name }}" placeholder="Please Enter The Products`s Name">
         </div>
 
+        {# product price editing #}
         <div class="form-group">
             <label for="price" class="text-info">Price : </label>
             <input id="price" name="price" class="form-control text-primary" type="number"
                    value="{{ object.price|unlocalize }}" placeholder="Please Enter The Products`s Price">
         </div>
 
+        {# product taxability editing #}
         <div class="form-check">
             {% if object.have_tax %}
                 <input checked class="form-check-input" type="checkbox" value="True" id="have_tax" name="have_tax">
@@ -33,22 +45,26 @@
             </label>
         </div>
 
+        {# product pdf catalog editing #}
         <p class="text-info mt-3">PDF Catalog : </p>
         <div class="form-group bg-light">
             <span id="pdf_catalog">{{ form.pdf_catalog }}</span>
         </div>
 
+        {# product image catalog editing #}
         <p class="text-info mt-3">Image Catalog : </p>
         <div class="form-group bg-light">
             <span id="pdf_catalog">{{ form.image_catalog }}</span>
         </div>
 
+        {# product technical description editing #}
         <div class="form-group">
             <label for="technical_desc" class="text-info">Technical Description :</label>
             <textarea class="form-control" id="technical_desc" name="technical_desc"
                       rows="4">{{ object.technical_desc }}</textarea>
         </div>
 
+        {# product usability editing #}
         <div class="form-group">
             <label for="usable_for_organizations_product" class="text-info">This Product is Useful For : </label>
             <select multiple class="form-control" id="usable_for_organizations_product"
@@ -63,6 +79,7 @@
             </select>
         </div>
 
+        {# form submit button #}
         <button class="btn btn-info mb-3" type="submit">Edit</button>
     </form>
 {% endblock %}

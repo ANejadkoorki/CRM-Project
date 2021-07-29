@@ -1,18 +1,31 @@
 {% extends 'company/home-template.html' %}
+
+{# page title #}
 {% block page_title %}Add Organizations Product{% endblock %}
+
+{# this page nav-item activation #}
 {% block home_navactive %}
     <li class="nav-item">{% endblock %}
 {% block organ_navactive %}
     <li class="nav-item active dropdown">{% endblock %}
+
+{# page content #}
 {% block page_content %}
+    {# page header #}
     <h1 class="h3 text-info">Add New Organizations Product : </h1>
+
+    {# form : add organizations products #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+        {# organizations product name #}
         <div class="form-group">
             <label for="name" class="text-info">Product Name : </label>
             <input id="name" name="name" class="form-control text-primary" type="text"
                    placeholder="Please Enter The Product`s Name">
         </div>
+
+        {# form submit button #}
         <button class="btn btn-info mb-3" type="submit">Add</button>
     </form>
 {% endblock %}
