@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from . import models, forms
+from company import models as companyModels
 # Create your views here.
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
@@ -100,11 +101,12 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
 
     # this method returns our company offers for each organization
     def get_offer_products(self):
-        organization = self.get_object()
-        offers = set()
-        for organization_product in organization.manufactured_product.all():
-            for company_product in organization_product.companyproduct_set.all():
-                offers.add(company_product)
+        organization = self.get_object()  # organization object
+        # organization object manufactured products
+        org_manufactured_products = organization.manufactured_product.all()
+        # offers : filtering in company product model objects
+        offers = companyModels.CompanyProduct.objects. \
+            filter(usable_for_organizations_product__in=org_manufactured_products).distinct()
         return offers
 
     # returning new context that have 'our_offer_products'

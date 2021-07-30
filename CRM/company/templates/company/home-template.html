@@ -79,6 +79,9 @@
                 {# log out nav item #}
                 </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#">{{ request.user.username }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
                     </li>
                 {% endif %}
