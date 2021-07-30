@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, RedirectView
+from django.views.generic import FormView, RedirectView, DetailView
 
 from . import forms
 
@@ -46,7 +47,16 @@ class ExpertLogout(RedirectView):
     """
         this view used for logging out an expert
     """
+
     def get(self, request, *args, **kwargs):
         messages.success(self.request, f'{self.request.user.username} Have Been Logged out Successfully.')
         logout(self.request)
         return redirect('company:home')
+
+
+class ExpertProfile(LoginRequiredMixin, DetailView):
+    """
+        this view used to get  a User model object details
+    """
+    model = get_user_model()
+    template_name = 'experts/profile.html'
