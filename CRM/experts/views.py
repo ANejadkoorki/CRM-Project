@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.views.generic import FormView, RedirectView, DetailView
+from django.views.generic import FormView, RedirectView, DetailView, UpdateView
 
 from . import forms
 
@@ -60,3 +60,29 @@ class ExpertProfile(LoginRequiredMixin, DetailView):
     """
     model = get_user_model()
     template_name = 'experts/profile.html'
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class ProfileEdit(LoginRequiredMixin, UpdateView):
+    """
+        this view used to update a User model Object
+    """
+    model = get_user_model()
+    template_name = 'experts/edit-profile.html'
+    fields = (
+        'first_name',
+        'last_name',
+        'username',
+    )
+
+    # form validation
+    def form_valid(self, form):
+        user = self.get_object()
+        form.save()
+        messages.success(self.request, f'User : {user.username} Details Updated Successfully.')
+        return redirect('experts:profile', user.pk)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Please Fill The Inputs Correctly.')
+        user_pk = self.get_object().pk
+        return redirect('experts:edit-profile', user_pk)
