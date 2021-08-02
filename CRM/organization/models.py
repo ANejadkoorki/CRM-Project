@@ -19,7 +19,6 @@ class OrganizationsProduct(models.Model):
         return self.name
 
 
-
 class Organization(models.Model):
     """
         represents an organization object contains organization`s characteristics

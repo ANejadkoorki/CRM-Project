@@ -10,6 +10,7 @@ class CompanyProduct(models.Model):
     """
     product_name = models.CharField(max_length=50, verbose_name=_('product name'))
     price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
+    # tax in percent
     have_tax = models.BooleanField(default=False)
     pdf_catalog = models.FileField(validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
                                    verbose_name=_('pdf catalog'), blank=True, null=True)

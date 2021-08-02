@@ -60,11 +60,30 @@
                         Product</a>
                 </div>
 
-                {# company drop down nav item #}
-                {# company nav item activision block  #}
-                {% block company_navactive %}
+
+                {# quote drop down nav item #}
+                {# quote nav item activision block  #}
+                {% block quote_navactive %}
                     <li class="nav-item dropdown">
                 {% endblock %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Quote
+                </a>
+
+                {# quote drop down options #}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Add Quote</a>
+                    <a class="dropdown-item" href="#">Quotes List</a>
+                </div>
+                </li>
+
+
+                    {# company drop down nav item #}
+                    {# company nav item activision block  #}
+                    {% block company_navactive %}
+                        <li class="nav-item dropdown">
+                    {% endblock %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Company
@@ -75,8 +94,6 @@
                     <a class="dropdown-item" href="{% url 'company:add-company-product' %}">Add Product</a>
                     <a class="dropdown-item" href="{% url 'company:list-company-product' %}">Products List</a>
                 </div>
-
-
                 </li>
 
                     {# profile nav item #}
