@@ -17,7 +17,6 @@
     {# headers #}
     <h1 class="h1 text-info font-weight-bold">Add Quote : </h1>
 
-
     {# form : Add Quote #}
     <form method="post" enctype="multipart/form-data" class="mt-4 mb-3">
         {% csrf_token %}
@@ -26,65 +25,77 @@
         <div class="form-group">
             <label for="organization" class="text-info">Choose Organization : </label>
             <select class="form-control" id="organization" name="organization">
+                <option value="None">None</option>
                 {% for organization in organizations_ol %}
                     <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
                 {% endfor %}
             </select>
         </div>
 
+
         <h2 class="h1 text-light font-weight-bold">
             ------------------------------------------------------------------</h2>
 
-
+        <a class="btn btn-info mt-4 mb-4" id="plus">➕</a>
+        <a class="btn btn-info mt-4 mb-4" id="minus">➖</a>
         {# quote item #}
-        {% for product in products_ol %}
-            <h3 class="h3 text-info">{{ forloop.counter }}</h3>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="product" class="text-info">Choose Product : </label>
-                        <select class="form-control" id="product" name="product">
-                            <option value="None">None</option>
-                            {% for product in products_ol %}
-                                <option value="{{ product.pk }}">{{ product.product_name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+        <div class="row" id="sample_quote_item">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="product" class="text-info">Choose Product : </label>
+                    <select class="form-control" id="product" name="product">
+                        <option value="None">None</option>
+                        {% for product in products_ol %}
+                            <option value="{{ product.pk }}">{{ product.product_name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <label for="price" class="text-info">Price : </label>
-                        <input readonly id="price" name="price" class="form-control text-primary" type="number"
-                               placeholder="{{  }}">
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <label for="qty" class="text-info">Quantity : </label>
-                        <input id="qty" name="qty" class="form-control text-primary" type="number"
-                               placeholder="Quantity">
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="form-group">
-                        <label for="discount" class="text-info">Discount : </label>
-                        <input id="discount" name="discount" class="form-control text-primary" type="text"
-                               placeholder="Discount">
-                    </div>
-                </div>
-
             </div>
-        {% endfor %}
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="qty" class="text-info">Quantity : </label>
+                    <input id="qty" name="qty" class="form-control text-primary" type="number"
+                           placeholder="Quantity">
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="discount" class="text-info">Discount : </label>
+                    <input id="discount" name="discount" class="form-control text-primary" type="text"
+                           value="0">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="empty-div"></div>
+
+
         <button class="btn btn-info" type="submit">Add</button>
 
 
     </form>
+{% endblock %}
 
+{% block page_scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#plus').on('click', function (event) {
+                var empty_div = document.getElementById("empty-div");
+                var sample_item = document.getElementById("sample_quote_item");
+                empty_div.innerHTML += sample_item.innerHTML;
+                empty_div.removeAttribute('id');
+                empty_div.setAttribute('class', 'row last-div');
+                $(empty_div).after('<div class="row" id="empty-div"></div>');
+            });
 
+            $('#minus').on('click', function (event) {
+                var elements = document.getElementsByClassName('last-div');
+                $(elements[0]).remove();
+            });
 
-
+        });
+    </script>
 {% endblock %}
