@@ -1,0 +1,90 @@
+{% extends 'company/home-template.html' %}
+
+{# page title #}
+{% block page_title %}Add Quote{% endblock %}
+
+{# this page nav-item activation #}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block quote_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+
+{# crm description located in home page #}
+{% block crm_desc %}{% endblock %}
+
+{# page content #}
+{% block page_content %}
+    {# headers #}
+    <h1 class="h1 text-info font-weight-bold">Add Quote : </h1>
+
+
+    {# form : Add Quote #}
+    <form method="post" enctype="multipart/form-data" class="mt-4 mb-3">
+        {% csrf_token %}
+
+        {# select organization #}
+        <div class="form-group">
+            <label for="organization" class="text-info">Choose Organization : </label>
+            <select class="form-control" id="organization" name="organization">
+                {% for organization in organizations_ol %}
+                    <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <h2 class="h1 text-light font-weight-bold">
+            ------------------------------------------------------------------</h2>
+
+
+        {# quote item #}
+        {% for product in products_ol %}
+            <h3 class="h3 text-info">{{ forloop.counter }}</h3>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="product" class="text-info">Choose Product : </label>
+                        <select class="form-control" id="product" name="product">
+                            <option value="None">None</option>
+                            {% for product in products_ol %}
+                                <option value="{{ product.pk }}">{{ product.product_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="price" class="text-info">Price : </label>
+                        <input readonly id="price" name="price" class="form-control text-primary" type="number"
+                               placeholder="{{  }}">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="qty" class="text-info">Quantity : </label>
+                        <input id="qty" name="qty" class="form-control text-primary" type="number"
+                               placeholder="Quantity">
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="discount" class="text-info">Discount : </label>
+                        <input id="discount" name="discount" class="form-control text-primary" type="text"
+                               placeholder="Discount">
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+        <button class="btn btn-info" type="submit">Add</button>
+
+
+    </form>
+
+
+
+
+{% endblock %}
