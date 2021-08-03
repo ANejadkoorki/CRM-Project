@@ -36,6 +36,8 @@ class Organization(models.Model):
     created_on = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('Creation time'))
     expert = models.ForeignKey('auth.User', verbose_name=_('Expert'), on_delete=models.PROTECT)
 
+    def __str__(self):
+        return f'{self.organization_name}'
     class Meta:
         unique_together = [
             'organization_name',

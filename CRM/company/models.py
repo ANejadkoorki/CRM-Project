@@ -18,3 +18,6 @@ class CompanyProduct(models.Model):
     technical_desc = models.TextField(verbose_name=_('technical description'))
     usable_for_organizations_product = models.ManyToManyField(organmodels.OrganizationsProduct,
                                                               verbose_name=_('usable for organizations product'))
+
+    def __str__(self):
+        return self.product_name

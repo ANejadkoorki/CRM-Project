@@ -1,28 +1,45 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from organization import models as organmodels
 from company import models as compmodels
-from . import models, forms
-from django.shortcuts import render
+from . import models
+from .forms import quote_item_create_formset
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class AddQuote(LoginRequiredMixin, FormView):
+class AddQuote(LoginRequiredMixin, CreateView):
+    """
+        this view creates several QuoteItem model objects
+    """
     template_name = 'sellProcess/add-quote.html'
-    form_class = forms.QuoteForm
-    extra_context = {
-        # ol : object list
-        'organizations_ol': organmodels.Organization.objects.all(),
-        'products_ol': compmodels.CompanyProduct.objects.all(),
-    }
 
-    def form_valid(self, form):
-        x = 2
+    def get_context_data(self, **kwargs):
+        formset = quote_item_create_formset(queryset=models.QuoteItem.objects.none())
+        organizations = organmodels.Organization.objects.filter(expert=self.request.user)
+        products = compmodels.CompanyProduct.objects.all()
+        return {
+            'formset': formset,
+            'organizations': organizations,
+            'products': products,
+        }
 
-    def form_invalid(self, form):
-        x = 2
+    def post(self, *args, **kwargs):
+        formset = quote_item_create_formset(data=self.request.POST)
+        if formset.is_valid():
+            organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
+                                                                expert=self.request.user)
+            quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
+            for form in formset:
+                form.instance.quote = quote
+                form.save()
+            messages.success(self.request, 'Quote Created Successfully.')
+            return redirect('sellProcess:add-quote')
+        else:
+            messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
+            return redirect('sellProcess:add-quote')
