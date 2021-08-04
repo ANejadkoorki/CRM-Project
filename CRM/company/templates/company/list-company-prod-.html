@@ -42,7 +42,13 @@
                                 <span>❌</span>
                             {% endif %}
                         </td>
-                        <td><a href="#">DOWNLOAD</a></td>
+                        <td>
+                            {% if object.pdf_catalog %}
+                            <a href="{{ object.pdf_catalog.url }}">DOWNLOAD</a>
+                            {% else %}
+                                <span class="text-light">None</span>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
