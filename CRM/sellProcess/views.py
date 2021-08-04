@@ -11,7 +11,7 @@ from .forms import quote_item_create_formset
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
 
 class AddQuote(LoginRequiredMixin, CreateView):
@@ -45,8 +45,17 @@ class AddQuote(LoginRequiredMixin, CreateView):
 
 
 class QuoteList(LoginRequiredMixin, ListView):
+    """
+        this view used to list quote objects and their quoteitem_sets
+    """
     model = models.Quote
     template_name = 'sellProcess/quote-list.html'
     paginate_by = 3
 
 
+class QuoteDetail(LoginRequiredMixin, DetailView):
+    """
+        this view used to show detail of a Quote model object
+    """
+    model = models.Quote
+    template_name = 'sellProcess/quote-detail.html'

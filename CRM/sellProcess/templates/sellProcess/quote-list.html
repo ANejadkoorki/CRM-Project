@@ -21,6 +21,7 @@
             <th>Products</th>
             <th>PDF Export</th>
             <th>Operation</th>
+            <th>Details</th>
         </tr>
 
         </thead>
@@ -38,6 +39,7 @@
                 </td>
                 <td><a href="#">PDF</a></td>
                 <td><a href="#">Send Email to Representative</a></td>
+                <td><a href="{% url 'sellProcess:quote-detail' object.pk %}">Show Details</a></td>
             </tr>
         {% endfor %}
 

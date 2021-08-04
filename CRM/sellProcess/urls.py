@@ -8,4 +8,5 @@ app_name = 'sellProcess'
 urlpatterns = [
     path('add-quote/', views.AddQuote.as_view(), name='add-quote'),
     path('quote-list/', views.QuoteList.as_view(), name='quote-list'),
+    path('quote-detail/<int:pk>', views.QuoteDetail.as_view(), name='quote-detail'),
 ]

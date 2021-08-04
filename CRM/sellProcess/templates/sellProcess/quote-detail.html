@@ -1,0 +1,71 @@
+{% extends 'company/home-template.html' %}
+{% load mytags %}
+
+{# page title #}
+{% block page_title %}Organizations Detail{% endblock %}
+
+{# this page nav-item activation #}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block quote_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+
+{# crm description block located in home page #}
+{% block crm_desc %}{% endblock %}
+
+{% block page_content %}
+
+    <div class="row justify-content-center">
+        <table class="table table-dark table-bordered tabular">
+            <thead>
+            <tr class="col-12">
+                <th>
+                    <h1 class="h1 text-light font-weight-bold text-center">CRM System</h1>
+                    <div class="row">
+                        <h3 class="h5 text-light  text-left col-md-8">Company Expert
+                            : {{ object.expert.get_full_name }}</h3>
+                        <h3 class="h5 text-light  text-right col-md-4">Date
+                            : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
+                    </div>
+                    <h3 class="h5 text-light  text-left">Total Products Quantity
+                        : {{ object.quoteitem_set.all.count }}</h3>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <table class="table table-dark table-bordered tabular">
+            <thead>
+            <tr>
+                <th>
+                    <h2 class="h3 text-light font-weight-bold text-left">Customer Details : </h2>
+                    <div class="row">
+                        <h5 class="h5 text-light text-left col-md-4">Name
+                            : {{ object.organization.organization_name }}</h5>
+                        <h5 class="h5 text-light text-right col-md-8">Representative Full Name
+                            : {{ object.organization.representative_full_name }}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="h5 text-light text-left col-md-2">Province : {{ object.organization.province }}</h5>
+                        <h5 class="h5 text-light text-right col-md-10">Representative Phone Number
+                            : {{ object.organization.representative_phone_number }}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="h5 text-light text-left col-md-4">Telephone : {{ object.organization.telephone }}</h5>
+                        <h5 class="h5 text-light text-right col-md-8">Representative Email
+                            : {{ object.organization.representative_email }}</h5>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <tr>
+            <th>Number</th>
+            <th>Product Name</th>
+            <th>Product Quantity</th>
+            <th>Product Total Cost</th>
+        </tr>
+        </thead>
+
+        </table>
+    </div>
+{% endblock %}
