@@ -24,8 +24,8 @@
         {# choose organization  #}
         <div class="form-group">
             <label for="organization" class="text-info">Choose Organization : </label>
-            <select class="form-control" id="organization" name="organization">
-                <option value="None">None</option>
+            <select class="form-control" id="organization" name="organization" required>
+                <option>None</option>
                 {% for organization in organizations %}
                     <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
                 {% endfor %}
@@ -39,7 +39,20 @@
         {% for form in formset %}
             <div class='table table-dark table-bordered'>
                 <table class='no_error'>
-                    {{ form.as_table }}
+                    <thead>
+                        <tr>
+                            <th>Choose Product : </th>
+                            <th>Quantity : </th>
+                            <th>Discount in Percent : </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td aria-required="true">{{ form.product }}</td>
+                            <td>{{ form.qty }}</td>
+                            <td>{{ form.discount }}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         {% endfor %}

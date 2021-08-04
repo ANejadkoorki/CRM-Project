@@ -15,23 +15,21 @@ from django.views.generic import CreateView
 
 class AddQuote(LoginRequiredMixin, CreateView):
     """
-        this view creates several QuoteItem model objects
+        this view creates several QuoteItem model objects and relates them to a Quote model Object
     """
     template_name = 'sellProcess/add-quote.html'
 
     def get_context_data(self, **kwargs):
         formset = quote_item_create_formset(queryset=models.QuoteItem.objects.none())
         organizations = organmodels.Organization.objects.filter(expert=self.request.user)
-        products = compmodels.CompanyProduct.objects.all()
         return {
             'formset': formset,
             'organizations': organizations,
-            'products': products,
         }
 
     def post(self, *args, **kwargs):
         formset = quote_item_create_formset(data=self.request.POST)
-        if formset.is_valid():
+        if formset.is_valid() and self.request.POST['organization'] is None:
             organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
                                                                 expert=self.request.user)
             quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
@@ -43,3 +41,5 @@ class AddQuote(LoginRequiredMixin, CreateView):
         else:
             messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
             return redirect('sellProcess:add-quote')
+
+
