@@ -27,12 +27,13 @@
                         <h3 class="h5 text-light  text-right col-md-4">Date
                             : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
                     </div>
-                    <h3 class="h5 text-light  text-left">Total Products Quantity
+                    <h3 class="h5 text-light  text-left">Total Products Type
                         : {{ object.quoteitem_set.all.count }}</h3>
                 </th>
             </tr>
             </thead>
         </table>
+
         <table class="table table-dark table-bordered tabular">
             <thead>
             <tr>
@@ -50,7 +51,8 @@
                             : {{ object.organization.representative_phone_number }}</h5>
                     </div>
                     <div class="row">
-                        <h5 class="h5 text-light text-left col-md-4">Telephone : {{ object.organization.telephone }}</h5>
+                        <h5 class="h5 text-light text-left col-md-4">Telephone
+                            : {{ object.organization.telephone }}</h5>
                         <h5 class="h5 text-light text-right col-md-8">Representative Email
                             : {{ object.organization.representative_email }}</h5>
                     </div>
@@ -58,13 +60,46 @@
             </tr>
             </thead>
         </table>
-        <tr>
-            <th>Number</th>
-            <th>Product Name</th>
-            <th>Product Quantity</th>
-            <th>Product Total Cost</th>
-        </tr>
-        </thead>
+
+        <table class="table table-dark table-bordered tabular">
+            <thead>
+                <tr>
+                    <th><h2 class="h2 text-light font-weight-bold text-center">Purchased Products</h2></th>
+                </tr>
+            </thead>
+        </table>
+
+        <table class="table table-dark table-bordered tabular">
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Taxability</th>
+                <th>Quantity</th>
+                <th>Base Price</th>
+                <th>Discount(Percent)</th>
+                <th>Total Cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for quote_item in object.quoteitem_set.all %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ quote_item.product.product_name }}</td>
+                    <td>
+                        {% if quote_item.product.have_tax %}
+                            ✅
+                        {% else %}
+                            ❌
+                        {% endif %}
+                    </td>
+                    <td>{{ quote_item.qty }}</td>
+                    <td>{{ quote_item.product.price }}</td>
+                    <td>{{ quote_item.discount }}</td>
+                    <td>{{ quote_item.calculate_final_price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
 
         </table>
     </div>

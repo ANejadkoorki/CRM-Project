@@ -27,6 +27,5 @@ class CompanyProductAdmin(admin.ModelAdmin):
         'quote',
         'product',
         'qty',
-        'price',
         'discount',
     ]
