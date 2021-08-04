@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -10,7 +11,7 @@ from .forms import quote_item_create_formset
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 
 class AddQuote(LoginRequiredMixin, CreateView):
@@ -29,7 +30,7 @@ class AddQuote(LoginRequiredMixin, CreateView):
 
     def post(self, *args, **kwargs):
         formset = quote_item_create_formset(data=self.request.POST)
-        if formset.is_valid() and self.request.POST['organization'] is None:
+        if formset.is_valid() and self.request.POST['organization'] != '0':
             organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
                                                                 expert=self.request.user)
             quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
@@ -43,3 +44,26 @@ class AddQuote(LoginRequiredMixin, CreateView):
             return redirect('sellProcess:add-quote')
 
 
+class QuoteList(LoginRequiredMixin, ListView):
+    template_name = 'sellProcess/quote-list.html'
+
+    def get(self, request, *args, **kwargs):
+        quotes = models.Quote.objects.all()
+        quote_dictionary = dict()
+        for quote in quotes:
+            quote_dictionary.update(
+                {quote: models.QuoteItem.objects.filter(quote=quote)}
+            )
+
+        paginator = Paginator(quote_dictionary, 3)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        return render(
+            request,
+            template_name='sellProcess/quote-list.html',
+            context={
+                'quote_dictionary': quote_dictionary,
+                'page_obj': page_obj,
+            }
+        )

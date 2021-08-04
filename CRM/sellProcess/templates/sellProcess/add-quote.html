@@ -1,5 +1,4 @@
 {% extends 'company/home-template.html' %}
-{% load widget_tweaks %}
 
 {# page title #}
 {% block page_title %}Add Quote{% endblock %}
@@ -25,7 +24,7 @@
         <div class="form-group">
             <label for="organization" class="text-info">Choose Organization : </label>
             <select class="form-control" id="organization" name="organization" required>
-                <option>None</option>
+                <option value="0">None</option>
                 {% for organization in organizations %}
                     <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
                 {% endfor %}

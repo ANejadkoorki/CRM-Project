@@ -1,0 +1,56 @@
+{% extends 'company/home-template.html' %}
+
+{# page title #}
+{% block page_title %}Quotes List{% endblock %}
+
+{# this page nav-item activation #}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block quote_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+
+{% block page_content %}
+    <h1 class="h1 text-info">Quotes List : </h1>
+
+    <table class="table table-dark table-bordered">
+        <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Products</th>
+            <th>PDF Export</th>
+            <th>Operation</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for quote, quote_items in quote_dictionary.items %}
+            <tr>
+                <td>{{ quote.pk }}</td>
+                <td>{{ quote.organization }}</td>
+                <td>
+                    {% for quote_item in quote_items %}
+                        {{ forloop.counter }}- {{ quote_item.product.product_name }}|qty: {{ quote_item.qty }} <br>
+                    {% endfor %}
+                </td>
+                <td><a href="#">PDF</a></td>
+                <td><a href="#">Send Email to Representative</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    {# quotes pagination #}
+    <div class="row">
+        <div class="container col-md-auto">
+            <div class="col-md-12">
+                {% include 'company/pagination.html' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
