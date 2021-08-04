@@ -27,13 +27,13 @@
 
         <tbody>
 
-        {% for quote, quote_items in quote_dictionary.items %}
+        {% for object in page_obj %}
             <tr>
-                <td>{{ quote.pk }}</td>
-                <td>{{ quote.organization }}</td>
+                <td>{{ object.pk }}</td>
+                <td>{{ object.organization }}</td>
                 <td>
-                    {% for quote_item in quote_items %}
-                        {{ forloop.counter }}- {{ quote_item.product.product_name }}|qty: {{ quote_item.qty }} <br>
+                    {% for quote_item in object.quoteitem_set.all %}
+                        {{ forloop.counter }}-{{ quote_item.product.product_name }} | quantity : {{ quote_item.qty }} <br>
                     {% endfor %}
                 </td>
                 <td><a href="#">PDF</a></td>

@@ -45,25 +45,8 @@ class AddQuote(LoginRequiredMixin, CreateView):
 
 
 class QuoteList(LoginRequiredMixin, ListView):
+    model = models.Quote
     template_name = 'sellProcess/quote-list.html'
+    paginate_by = 3
 
-    def get(self, request, *args, **kwargs):
-        quotes = models.Quote.objects.all()
-        quote_dictionary = dict()
-        for quote in quotes:
-            quote_dictionary.update(
-                {quote: models.QuoteItem.objects.filter(quote=quote)}
-            )
 
-        paginator = Paginator(quote_dictionary, 3)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-
-        return render(
-            request,
-            template_name='sellProcess/quote-list.html',
-            context={
-                'quote_dictionary': quote_dictionary,
-                'page_obj': page_obj,
-            }
-        )
