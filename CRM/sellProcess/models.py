@@ -29,6 +29,12 @@ class Quote(models.Model):
         verbose_name=_('creation time')
     )
 
+    def calculate_final_amount_payable(self):
+        final_amount_payable = 0
+        for quote_item in self.quoteitem_set.all():
+            final_amount_payable += quote_item.calculate_final_price()
+        return final_amount_payable
+
     def __str__(self):
         return f'Quote : ({self.pk}) for organization : {self.organization}'
 

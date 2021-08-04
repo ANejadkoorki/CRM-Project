@@ -63,9 +63,9 @@
 
         <table class="table table-dark table-bordered tabular">
             <thead>
-                <tr>
-                    <th><h2 class="h2 text-light font-weight-bold text-center">Purchased Products</h2></th>
-                </tr>
+            <tr>
+                <th><h2 class="h2 text-light font-weight-bold text-center">Purchased Products</h2></th>
+            </tr>
             </thead>
         </table>
 
@@ -96,11 +96,19 @@
                     <td>{{ quote_item.qty }}</td>
                     <td>{{ quote_item.product.price }}</td>
                     <td>{{ quote_item.discount }}</td>
-                    <td>{{ quote_item.calculate_final_price }}</td>
+                    <td class="bg-light text-dark">{{ quote_item.calculate_final_price }}</td>
                 </tr>
             {% endfor %}
             </tbody>
+        </table>
 
+        <table class="table table-dark table-bordered tabular">
+            <thead>
+            <tr>
+                <th class="col-md-9">Final amount payable : </th>
+                <th class="col-md-3 bg-success">{{ object.calculate_final_amount_payable }}</th>
+            </tr>
+            </thead>
         </table>
     </div>
 {% endblock %}
