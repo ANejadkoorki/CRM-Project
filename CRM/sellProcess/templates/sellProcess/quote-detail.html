@@ -100,15 +100,13 @@
                 </tr>
             {% endfor %}
             </tbody>
+            <tfoot>
+            <tr>
+                <th class="col-md-9" colspan="6">Final amount payable :</th>
+                <th class="col-md-3 bg-success" colspan="1">{{ object.calculate_final_amount_payable }}</th>
+            </tr>
+            </tfoot>
         </table>
 
-        <table class="table table-dark table-bordered tabular">
-            <thead>
-            <tr>
-                <th class="col-md-9">Final amount payable : </th>
-                <th class="col-md-3 bg-success">{{ object.calculate_final_amount_payable }}</th>
-            </tr>
-            </thead>
-        </table>
     </div>
 {% endblock %}
