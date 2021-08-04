@@ -1,6 +1,8 @@
+import weasyprint
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -59,3 +61,22 @@ class QuoteDetail(LoginRequiredMixin, DetailView):
     """
     model = models.Quote
     template_name = 'sellProcess/quote-detail.html'
+
+
+class QuotePdf(LoginRequiredMixin, DetailView):
+    """
+        this view used to get pdf of quote
+    """
+    model = models.Quote
+    template_name = 'sellProcess/quote-pdf.html'
+
+    def get(self, request, *args, **kwargs):
+
+        normal_rendered_page = super(QuotePdf, self).get(request, *args, **kwargs)
+
+        rendered_content = normal_rendered_page.rendered_content
+        # css = weasyprint.CSS(filename='company/static/css/bootstrap.min.css')
+        pdf = weasyprint.HTML(string=rendered_content).write_pdf()
+
+        response = HttpResponse(pdf, content_type='application/pdf')
+        return response

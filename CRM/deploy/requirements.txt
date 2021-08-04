@@ -6,3 +6,4 @@ django-jalali
 django-rest-framework
 pymemcache
 django-widget-tweaks
+weasyprint

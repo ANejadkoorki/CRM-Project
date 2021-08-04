@@ -37,7 +37,7 @@
                         {{ forloop.counter }}-{{ quote_item.product.product_name }} | quantity : {{ quote_item.qty }} <br>
                     {% endfor %}
                 </td>
-                <td><a href="#">PDF</a></td>
+                <td><a href="{% url 'sellProcess:quote-pdf' object.pk %}">PDF</a></td>
                 <td><a href="#">Send Email to Representative</a></td>
                 <td><a href="{% url 'sellProcess:quote-detail' object.pk %}">Show Details</a></td>
             </tr>

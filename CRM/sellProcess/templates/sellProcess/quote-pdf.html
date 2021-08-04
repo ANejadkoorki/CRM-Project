@@ -1,0 +1,134 @@
+{% load mytags %}
+<html lang="en">
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    {# page encoding #}
+    <meta charset="UTF-8">
+
+    {# bootstrap css styles and responsive page  #}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="{% static 'css/bootstrap.min.css' %} " rel="stylesheet">
+    <link href="{% static 'css/styles.css' %} " rel="stylesheet">
+    <title>{{ base_title }}{% block page_title %}Home{% endblock %}</title>
+    <style>
+        #products {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #products td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #products th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+
+<table class="table table-dark table-bordered tabular">
+    <thead>
+    <tr class="col-12">
+        <th>
+            <h1 class="h1 text-light font-weight-bold text-center">CRM System</h1>
+            <div class="row">
+                <h3 class="h5 text-light  text-left col-md-8">Company Expert
+                    : {{ object.expert.get_full_name }}</h3>
+                <h3 class="h5 text-light  text-right col-md-4">Date
+                    : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
+            </div>
+            <h3 class="h5 text-light  text-left">Total Products Type
+                : {{ object.quoteitem_set.all.count }}</h3>
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<table class="table table-dark table-bordered tabular">
+    <thead>
+    <tr>
+        <th>
+            <h2 class="h3 text-light font-weight-bold text-left">Customer Details : </h2>
+            <div class="row">
+                <h5 class="h5 text-light text-left col-md-4">Name
+                    : {{ object.organization.organization_name }}</h5>
+                <h5 class="h5 text-light text-right col-md-8">Representative Full Name
+                    : {{ object.organization.representative_full_name }}</h5>
+            </div>
+            <div class="row">
+                <h5 class="h5 text-light text-left col-md-2">Province : {{ object.organization.province }}</h5>
+                <h5 class="h5 text-light text-right col-md-10">Representative Phone Number
+                    : {{ object.organization.representative_phone_number }}</h5>
+            </div>
+            <div class="row">
+                <h5 class="h5 text-light text-left col-md-4">Telephone
+                    : {{ object.organization.telephone }}</h5>
+                <h5 class="h5 text-light text-right col-md-8">Representative Email
+                    : {{ object.organization.representative_email }}</h5>
+            </div>
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<table class="table table-dark table-bordered tabular">
+    <thead>
+    <tr>
+        <th><h2 class="h2 text-light font-weight-bold text-center">Purchased Products</h2></th>
+    </tr>
+    </thead>
+</table>
+
+
+<table class="table table-dark table-bordered tabular" id="products">
+    <thead>
+    <tr>
+        <th id="products">Number</th>
+        <th id="products">Name</th>
+        <th id="products">Taxability</th>
+        <th id="products">Quantity</th>
+        <th id="products">Base Price</th>
+        <th id="products">Discount(Percent)</th>
+        <th id="products">Total Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for quote_item in object.quoteitem_set.all %}
+        <tr>
+            <td id="products">{{ forloop.counter }}</td>
+            <td id="products">{{ quote_item.product.product_name }}</td>
+            <td id="products">
+                {% if quote_item.product.have_tax %}
+                    YES
+                {% else %}
+                    NO
+                {% endif %}
+            </td>
+            <td id="products">{{ quote_item.qty }}</td>
+            <td id="products">{{ quote_item.product.price }}</td>
+            <td id="products">{{ quote_item.discount }}</td>
+            <td id="products" class="bg-light text-dark">{{ quote_item.calculate_final_price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th class="col-md-9" colspan="6">Final amount payable :</th>
+        <th class="col-md-3 bg-success" colspan="1">{{ object.calculate_final_amount_payable }}</th>
+    </tr>
+    </tfoot>
+</table>
+
+
+</body>
+
+
+</html>
