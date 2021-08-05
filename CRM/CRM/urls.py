@@ -22,16 +22,14 @@ from company import views
 # urls:
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.HomeView.as_view()),
+    path('', views.HomeView.as_view()),
     path('company/', include('company.urls')),
     path('experts/', include('experts.urls')),
     path('organization/', include('organization.urls')),
-    path('sellProcess/', include('sellProcess.urls'))
+    path('sellProcess/', include('sellProcess.urls')),
+    path('email/', include('emailApp.urls')),
 ]
-
 
 # passing STATIC URL and MEDIA URL to project`s root
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

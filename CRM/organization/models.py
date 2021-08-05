@@ -38,6 +38,7 @@ class Organization(models.Model):
 
     def __str__(self):
         return f'{self.organization_name}'
+
     class Meta:
         unique_together = [
             'organization_name',

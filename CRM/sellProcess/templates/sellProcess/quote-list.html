@@ -38,7 +38,7 @@
                     {% endfor %}
                 </td>
                 <td><a href="{% url 'sellProcess:quote-pdf' object.pk %}">PDF</a></td>
-                <td><a href="#">Send Email to Representative</a></td>
+                <td><a href="{% url 'emailApp:send-email' object.pk %}">Send Email to Representative</a></td>
                 <td><a href="{% url 'sellProcess:quote-detail' object.pk %}">Show Details</a></td>
             </tr>
         {% endfor %}
