@@ -34,7 +34,7 @@
                 <td>{{ object.organization }}</td>
                 <td>
                     {% for quote_item in object.quoteitem_set.all %}
-                        {{ forloop.counter }}-{{ quote_item.product.product_name }} | quantity : {{ quote_item.qty }} <br>
+                        {{ forloop.counter }}-{{ quote_item.product.product_name }}<br>quantity : {{ quote_item.qty }} <br>
                     {% endfor %}
                 </td>
                 <td><a href="{% url 'sellProcess:quote-pdf' object.pk %}">PDF</a></td>

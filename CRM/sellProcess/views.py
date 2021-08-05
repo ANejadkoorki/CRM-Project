@@ -33,14 +33,18 @@ class AddQuote(LoginRequiredMixin, CreateView):
     def post(self, *args, **kwargs):
         formset = quote_item_create_formset(data=self.request.POST)
         if formset.is_valid() and self.request.POST['organization'] != '0':
-            organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
-                                                                expert=self.request.user)
-            quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
-            for form in formset:
-                form.instance.quote = quote
-                form.save()
-            messages.success(self.request, 'Quote Created Successfully.')
-            return redirect('sellProcess:add-quote')
+            try:
+                organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
+                                                                    expert=self.request.user)
+                quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
+                for form in formset:
+                    form.instance.quote = quote
+                    form.save()
+                messages.success(self.request, 'Quote Created Successfully.')
+                return redirect('sellProcess:add-quote')
+            except:
+                messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
+                return redirect('sellProcess:add-quote')
         else:
             messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
             return redirect('sellProcess:add-quote')
@@ -71,7 +75,6 @@ class QuotePdf(LoginRequiredMixin, DetailView):
     template_name = 'sellProcess/quote-pdf.html'
 
     def get(self, request, *args, **kwargs):
-
         normal_rendered_page = super(QuotePdf, self).get(request, *args, **kwargs)
 
         rendered_content = normal_rendered_page.rendered_content

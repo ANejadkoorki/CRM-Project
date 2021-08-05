@@ -30,6 +30,9 @@ class Quote(models.Model):
     )
 
     def calculate_final_amount_payable(self):
+        """
+            this method calculates each quote final amount to pay
+        """
         final_amount_payable = 0
         for quote_item in self.quoteitem_set.all():
             final_amount_payable += quote_item.calculate_final_price()
@@ -58,8 +61,10 @@ class QuoteItem(models.Model):
     discount = models.FloatField(default=0, verbose_name=_('discount in percent'))
 
     def calculate_final_price(self):
+        """
+            this method calculates the final price of each quote item after tax and discount calculation
+        """
         # tc = total cost
-
         # if quote item have tax
         taxability = compmodels.CompanyProduct.objects.get(pk=self.product_id).have_tax
         product_obj_price = compmodels.CompanyProduct.objects.get(pk=self.product_id).price
