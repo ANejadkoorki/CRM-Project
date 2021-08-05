@@ -8,8 +8,8 @@ from django.core.mail import send_mail, EmailMessage
 
 
 @shared_task
-def send_email_task(request, organization_name, quote_id, organization_representative_full_name,
-                    organization_representative_email, sender):
+def send_email_task(organization_name, quote_id, organization_representative_full_name,
+                    organization_representative_email, sender_id):
     try:
         quote_email = EmailMessage(
             subject=f'Quote(ID:{quote_id}) for organization : {organization_name}',
@@ -25,18 +25,16 @@ def send_email_task(request, organization_name, quote_id, organization_represent
             ],
         )
         quote_email.send()
-        models.EmailHistory.objects.create(
+        email_history_object = models.EmailHistory.objects.create(
             receiver_email_address=organization_representative_email,
             is_successful=True,
-            sender=sender,
+            sender_id=sender_id,
         )
-        messages.success(request, 'The Email Has Been Sent Successfully.')
     except:
-        models.EmailHistory.objects.create(
+        email_history_object = models.EmailHistory.objects.create(
             receiver_email_address=organization_representative_email,
             is_successful=False,
-            sender=sender,
+            sender=sender_id,
         )
-        messages.error(request, 'The Email Sending Failed.')
 
-    return None
+    return email_history_object.is_successful
