@@ -38,14 +38,14 @@
     <thead>
     <tr class="col-12">
         <th>
-            <h1 class="h1 text-light font-weight-bold text-center">CRM System</h1>
+            <h1 class="h1 text-light font-weight-bold text-center" style="text-align: center">CRM System</h1>
             <div class="row">
-                <h3 class="h5 text-light  text-left col-md-8">Company Expert
+                <h3 class="h5 text-light  text-left col-md-8" style="text-align: left">Company Expert
                     : {{ object.expert.get_full_name }}</h3>
-                <h3 class="h5 text-light  text-right col-md-4">Date
+                <h3 class="h5 text-light  text-right col-md-4" style="text-align: left">Date
                     : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
             </div>
-            <h3 class="h5 text-light  text-left">Total Products Type
+            <h3 class="h5 text-light  text-left" style="text-align: left">Total Products Type
                 : {{ object.quoteitem_set.all.count }}</h3>
         </th>
     </tr>
@@ -56,22 +56,22 @@
     <thead>
     <tr>
         <th>
-            <h2 class="h3 text-light font-weight-bold text-left">Customer Details : </h2>
+            <h2 class="h3 text-light font-weight-bold text-left" style="text-align: left">Customer Details : </h2>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-4">Name
+                <h5 class="h5 text-light text-left col-md-4" style="text-align: left">Name
                     : {{ object.organization.organization_name }}</h5>
-                <h5 class="h5 text-light text-right col-md-8">Representative Full Name
+                <h5 class="h5 text-light text-right col-md-8" style="text-align: left">Representative Full Name
                     : {{ object.organization.representative_full_name }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-2">Province : {{ object.organization.province }}</h5>
-                <h5 class="h5 text-light text-right col-md-10">Representative Phone Number
+                <h5 class="h5 text-light text-left col-md-2" style="text-align: left">Province : {{ object.organization.province }}</h5>
+                <h5 class="h5 text-light text-right col-md-10" style="text-align: left">Representative Phone Number
                     : {{ object.organization.representative_phone_number }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-4">Telephone
+                <h5 class="h5 text-light text-left col-md-4" style="text-align: left">Telephone
                     : {{ object.organization.telephone }}</h5>
-                <h5 class="h5 text-light text-right col-md-8">Representative Email
+                <h5 class="h5 text-light text-right col-md-8" style="text-align: left">Representative Email
                     : {{ object.organization.representative_email }}</h5>
             </div>
         </th>

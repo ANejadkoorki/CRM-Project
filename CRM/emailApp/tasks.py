@@ -9,13 +9,11 @@ from django.core.mail import send_mail, EmailMessage
 
 @shared_task
 def send_email_task(organization_name, quote_id, organization_representative_full_name,
-                    organization_representative_email, sender_id):
+                    organization_representative_email, html_message, sender_id):
     try:
         quote_email = EmailMessage(
             subject=f'Quote(ID:{quote_id}) for organization : {organization_name}',
-            body=f'Hello Dear {organization_representative_full_name};'
-                 f'\nThe Quote for your organization : {organization_name} has been recorded and'
-                 f' posted in the attachment.',
+            body=html_message,
             from_email=settings.EMAIL_HOST_USER,
             to=[
                 organization_representative_email
@@ -24,6 +22,7 @@ def send_email_task(organization_name, quote_id, organization_representative_ful
 
             ],
         )
+        quote_email.content_subtype = 'html'  # this is required because there is no plain text email message
         quote_email.send()
         email_history_object = models.EmailHistory.objects.create(
             receiver_email_address=organization_representative_email,
