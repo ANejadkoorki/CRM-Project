@@ -35,7 +35,7 @@ def send_email_with_celery(request, pk):
         },
     )
 
-    # function : send_email_task in below variable returns email history model object
+    # function : send_email_task in below variable returns email history model object status
     email_result = send_email_task.delay(organization_name,
                                          quote_id,
                                          organization_representative_email,
