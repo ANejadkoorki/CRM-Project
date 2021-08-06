@@ -10,16 +10,24 @@ from organization import models as organmodels
 
 
 def send_email_with_celery(request, pk):
+    """
+        this email used to send email with celery task
+    """
     # shaping Email requirements
+    # sender
     sender_id = request.user.pk
+
+    # quote
     quote_id = pk
     quote_object = spmodels.Quote.objects.get(pk=quote_id)
     quote_organization_id = quote_object.organization_id
+
+    # organization
     organization = organmodels.Organization.objects.get(pk=quote_organization_id)
     organization_name = organization.organization_name
     organization_representative_email = organization.representative_email
-    organization_representative_full_name = organization.representative_full_name
 
+    # quote html message
     html_message = render_to_string(
         template_name='sellProcess/quote-pdf.html',
         context={
@@ -27,11 +35,14 @@ def send_email_with_celery(request, pk):
         },
     )
 
-    # send_email_task in below variable returns email history model object
-    email_result = send_email_task.delay(organization_name, quote_id, organization_representative_full_name,
-                                         organization_representative_email, html_message, sender_id)
+    # function : send_email_task in below variable returns email history model object
+    email_result = send_email_task.delay(organization_name,
+                                         quote_id,
+                                         organization_representative_email,
+                                         html_message,
+                                         sender_id)
 
-    # response :
+    # response message :
     if email_result:
         messages.success(request, 'Email Has Been Sent Successfully.')
     else:

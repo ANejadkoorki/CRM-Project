@@ -69,6 +69,7 @@
                 cloneMore('div.table:last', 'form');
             });
 
+            {# this js function used to update management form and add one form to get another quote item #}
             function cloneMore(selector, type) {
                 var newElement = $(selector).clone(true);
                 var total = $('#id_' + type + '-TOTAL_FORMS').val();

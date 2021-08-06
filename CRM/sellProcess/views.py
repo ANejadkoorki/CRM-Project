@@ -23,6 +23,7 @@ class AddQuote(LoginRequiredMixin, CreateView):
     template_name = 'sellProcess/add-quote.html'
 
     def get_context_data(self, **kwargs):
+        # passing the formset and organizations objects to context
         formset = quote_item_create_formset(queryset=models.QuoteItem.objects.none())
         organizations = organmodels.Organization.objects.filter(expert=self.request.user)
         return {
@@ -34,11 +35,14 @@ class AddQuote(LoginRequiredMixin, CreateView):
         formset = quote_item_create_formset(data=self.request.POST)
         if formset.is_valid() and self.request.POST['organization'] != '0':
             try:
+                # get quote organization
                 organization = organmodels.Organization.objects.get(pk=self.request.POST['organization'],
                                                                     expert=self.request.user)
+                # create quote object
                 quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
                 for form in formset:
                     form.instance.quote = quote
+                    # saving each form (quote_item) to model QuoteItem
                     form.save()
                 messages.success(self.request, 'Quote Created Successfully.')
                 return redirect('sellProcess:add-quote')
@@ -78,7 +82,7 @@ class QuotePdf(LoginRequiredMixin, DetailView):
         normal_rendered_page = super(QuotePdf, self).get(request, *args, **kwargs)
 
         rendered_content = normal_rendered_page.rendered_content
-        # css = weasyprint.CSS(filename='company/static/css/bootstrap.min.css')
+
         pdf = weasyprint.HTML(string=rendered_content).write_pdf()
 
         response = HttpResponse(pdf, content_type='application/pdf')
