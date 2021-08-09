@@ -110,7 +110,7 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
             filter(usable_for_organizations_product__in=org_manufactured_products).distinct()
         return offers
 
-    # returning new context that have 'our_offer_products'
+    # returning new context that have 'our_offer_products and follow up objects'
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['our_offer_products'] = self.get_offer_products()
