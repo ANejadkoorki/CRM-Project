@@ -2,7 +2,7 @@ import weasyprint
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +16,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, ListView, DetailView
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class AddQuote(LoginRequiredMixin, CreateView):
     """
         this view creates several QuoteItem model objects and relates them to a Quote model Object
@@ -87,3 +88,36 @@ class QuotePdf(LoginRequiredMixin, DetailView):
 
         response = HttpResponse(pdf, content_type='application/pdf')
         return response
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class FollowUpView(LoginRequiredMixin, CreateView):
+    """
+        this view used to create a FollowUp model object
+    """
+    model = models.FollowUp
+    template_name = 'sellProcess/follow-up.html'
+    fields = (
+        'description',
+    )
+
+    def form_valid(self, form):
+        form.instance.expert = self.request.user
+        form.instance.organization = organmodels.Organization.objects.get(pk=self.kwargs['organization_pk'])
+        form.save()
+        return JsonResponse(data={
+            'success': 'True',
+            'success_message': 'Record Has Been Saved Successfully.'
+        }, status=200)
+
+    def form_invalid(self, form):
+        return JsonResponse(data={
+            'success': 'False',
+            'error_message': 'Failed! Please Fill The Input Correctly.'
+        }, status=400)
+
+    def get_context_data(self, **kwargs):
+        context = {
+            'organization_obj': organmodels.Organization.objects.get(pk=self.kwargs['organization_pk']),
+        }
+        return context

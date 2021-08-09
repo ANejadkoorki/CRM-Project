@@ -86,3 +86,24 @@ class QuoteItem(models.Model):
             else:
                 tc = (self.qty * product_obj_price)
                 return tc
+
+
+class FollowUp(models.Model):
+    description = models.TextField(verbose_name=_('Follow Up Description'))
+    expert = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.PROTECT,
+        verbose_name=_('expert'),
+    )
+    organization = models.ForeignKey(
+        organmodels.Organization,
+        on_delete=models.CASCADE,
+        verbose_name=_('For Organization'),
+    )
+    created_on = jmodels.jDateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Creation Time')
+    )
+
+    def __str__(self):
+        return f"Follow Up for {self.organization} by {self.expert}"

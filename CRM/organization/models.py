@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import RegexValidator
 from django.db import models
 from django_jalali.db import models as jmodels
@@ -34,7 +35,7 @@ class Organization(models.Model):
                                                    verbose_name=_('Representative phone number'))
     representative_email = models.EmailField(verbose_name=_('Representative email'))
     created_on = jmodels.jDateTimeField(auto_now_add=True, verbose_name=_('Creation time'))
-    expert = models.ForeignKey('auth.User', verbose_name=_('Expert'), on_delete=models.PROTECT)
+    expert = models.ForeignKey(get_user_model(), verbose_name=_('Expert'), on_delete=models.PROTECT)
 
     def __str__(self):
         return f'{self.organization_name}'

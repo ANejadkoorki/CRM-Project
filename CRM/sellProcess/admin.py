@@ -6,7 +6,7 @@ admin.site.site_header = 'CRM System'
 
 
 @admin.register(models.Quote)
-class CompanyProductAdmin(admin.ModelAdmin):
+class QuoteAdmin(admin.ModelAdmin):
     """
         represents Quote Model admin interface
     """
@@ -18,7 +18,7 @@ class CompanyProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.QuoteItem)
-class CompanyProductAdmin(admin.ModelAdmin):
+class QuoteItemAdmin(admin.ModelAdmin):
     """
         represents QuoteItem Model admin interface
     """
@@ -28,4 +28,22 @@ class CompanyProductAdmin(admin.ModelAdmin):
         'product',
         'qty',
         'discount',
+    ]
+
+
+@admin.register(models.FollowUp)
+class FollowUpAdmin(admin.ModelAdmin):
+    """
+        represents FollowUp Model admin interface
+    """
+    list_display = [
+        'id',
+        'organization',
+        'expert',
+        'description',
+        'created_on',
+    ]
+
+    list_display_links = [
+        'organization'
     ]

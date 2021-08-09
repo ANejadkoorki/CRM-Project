@@ -34,7 +34,7 @@
                         <td><a href="{% url 'organization:organization-detail' object.pk %}" class="text-info">{{ object.organization_name }}</a></td>
                         <td>{{ object.expert }}</td>
                         <td>{{ object.representative_full_name }}</td>
-                        <td><a href="#">Record follow-up</a></td>
+                        <td><a href="{% url 'sellProcess:followUp' object.pk %}">Record follow-up</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

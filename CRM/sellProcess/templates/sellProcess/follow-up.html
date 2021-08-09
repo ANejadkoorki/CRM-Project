@@ -1,0 +1,78 @@
+{% extends 'company/home-template.html' %}
+
+{# page title #}
+{% block page_title %}Follow Up{% endblock %}
+
+{# this page nav-item activation #}
+{% block home_navactive %}
+    <li class="nav-item">{% endblock %}
+{% block organ_navactive %}
+    <li class="nav-item active dropdown">{% endblock %}
+
+{# crm description located in home page #}
+{% block crm_desc %}{% endblock %}
+
+{# page content #}
+{% block page_content %}
+    {# page header #}
+    <h1 class="h1 text-info">Record Follow Up For {{ organization_obj.organization_name }} : </h1>
+
+    {# form : add organizations products #}
+    <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {# organizations product name #}
+        <div class="form-group">
+            <label for="description" class="text-info">Follow Up Description : </label>
+            <textarea id="description" name="description" class="form-control text-primary" type="text" rows="5"
+                      placeholder="Please Enter The Follow Up Here"></textarea>
+        </div>
+
+    </form>
+
+    {# form submit button #}
+    <button class="btn btn-info mb-3" type="submit" id="record_btn">Record</button>
+
+
+{% endblock %}
+
+
+{# page messages #}
+{% block page_messages %}
+    <div class="container">
+        <div id="message-div"></div>
+    </div>
+{% endblock %}
+
+
+{# page scripts that contains ajax code #}
+{% block page_scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#record_btn').on('click', function (event) {
+                var description = $('#description').val();
+                $.ajax({
+                    method: 'post',
+                    url: '{% url 'sellProcess:followUp' organization_obj.pk %}',
+                    data: {
+                        description: description
+                    },
+                    success: function (response) {
+                        var success_message_div = $('#message-div')
+                        success_message_div.empty()
+                        var my_div = '<div class="alert alert-success">' + response.success_message + '<button type="button" data-dismiss="alert" class="close">&times;</button></div>'
+                        success_message_div.append(my_div)
+                    },
+                    error: function (response) {
+                        var error_message_div = $('#message-div')
+                        error_message_div.empty()
+                        var my_div = '<div class="alert alert-danger">' + response.responseJSON.error_message + '<button type="button" data-dismiss="alert" class="close">&times;</button></div>'
+                        error_message_div.append(my_div)
+                    },
+
+                })
+            });
+        });
+    </script>
+{% endblock %}
+

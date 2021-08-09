@@ -6,6 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from . import models, forms
 from company import models as companyModels
+from sellProcess import models as SPmodels
 # Create your views here.
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
@@ -113,4 +114,5 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['our_offer_products'] = self.get_offer_products()
+        context['organization_follow_up_objects'] = SPmodels.FollowUp.objects.filter(organization_id=self.kwargs['pk'])
         return context

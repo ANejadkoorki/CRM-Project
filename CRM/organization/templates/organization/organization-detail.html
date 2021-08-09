@@ -1,5 +1,6 @@
 {% extends 'company/home-template.html' %}
 {% load mytags %}
+{% load mytags %}
 
 {# page title #}
 {% block page_title %}Organizations Detail{% endblock %}
@@ -25,7 +26,7 @@
             <a class="btn btn-secondary" href="{% url 'organization:organization-list' %}">Return to Previous Page</a>
         </div>
         <div class="col-md-auto">
-            <a class="btn btn-secondary" href="#">Pro Forma Invoice Issuance</a>
+            <a class="btn btn-secondary" href="{% url 'sellProcess:add-quote' %}">Pro Forma Invoice Issuance</a>
         </div>
         {% if request.user == object.expert %}
             <div class="col-md-auto">
@@ -122,12 +123,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="text-dark bg-light">##</td>
-                <td class="text-dark bg-light">##</td>
-                <td class="text-dark bg-light">##</td>
-                <td class="text-dark bg-light">##</td>
-            </tr>
+                {% if organization_follow_up_objects %}
+                    {% for follow_up in organization_follow_up_objects %}
+                        <tr>
+                            <td class="text-dark bg-light">{{ follow_up.pk }}</td>
+                            <td class="text-dark bg-light">{{ follow_up.expert.username }}</td>
+                            <td class="text-dark bg-light">{{ follow_up.created_on|jdate:"%Y-%m-%d" }}</td>
+                            <td class="text-dark bg-light">{{ follow_up.description }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td class="text-dark bg-light" colspan="4" style="text-align: center">No Follow up</td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>

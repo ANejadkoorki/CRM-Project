@@ -10,4 +10,6 @@ urlpatterns = [
     path('quote-list/', views.QuoteList.as_view(), name='quote-list'),
     path('quote-detail/<int:pk>', views.QuoteDetail.as_view(), name='quote-detail'),
     path('quote-pdf/<int:pk>', views.QuotePdf.as_view(), name='quote-pdf'),
+    path('followUp/<int:organization_pk>', views.FollowUpView.as_view(), name='followUp'),
 ]
+
