@@ -31,10 +31,15 @@
                 {% for object in object_list %}
                     <tr>
                         <th scope="row">{{ object.pk }}</th>
-                        <td><a href="{% url 'organization:organization-detail' object.pk %}" class="text-info">{{ object.organization_name }}</a></td>
+                        <td><a href="{% url 'organization:organization-detail' object.pk %}"
+                               class="text-info">{{ object.organization_name }}</a></td>
                         <td>{{ object.expert }}</td>
                         <td>{{ object.representative_full_name }}</td>
-                        <td><a href="{% url 'sellProcess:followUp' object.pk %}">Record follow-up</a></td>
+                        {% if request.user == object.expert %}
+                            <td><a href="{% url 'sellProcess:followUp' object.pk %}">Record follow-up</a></td>
+                        {% else %}
+                            <td><a href="#">No Permission</a></td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
