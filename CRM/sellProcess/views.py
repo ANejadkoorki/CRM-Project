@@ -84,7 +84,7 @@ class QuotePdf(LoginRequiredMixin, DetailView):
 
         rendered_content = normal_rendered_page.rendered_content
 
-        pdf = weasyprint.HTML(string=rendered_content).write_pdf()
+        pdf = weasyprint.HTML(string=rendered_content, base_url='http://127.0.0.1:8000').write_pdf()
 
         response = HttpResponse(pdf, content_type='application/pdf')
         return response

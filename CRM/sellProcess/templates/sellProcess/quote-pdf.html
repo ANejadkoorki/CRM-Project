@@ -15,10 +15,16 @@
 
     {# tables pdf style #}
     <style>
-        #products {
+        body{
+            background-color: white;
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
+        }
+
+        #products {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
         }
 
         #products td, #customers th {
@@ -36,18 +42,18 @@
 <body>
 
 {# this table shows the Company details #}
-<table class="table table-dark table-bordered tabular">
+<table class="table table-light table-bordered tabular">
     <thead>
     <tr class="col-12">
         <th>
-            <h1 class="h1 text-light font-weight-bold text-center" style="text-align: center">CRM System</h1>
+            <h1 class="h1 text-dark font-weight-bold text-center" style="text-align: center">CRM System</h1>
             <div class="row">
-                <h3 class="h5 text-light  text-left col-md-8" style="text-align: left">Company Expert
+                <h3 class="h5 text-dark  text-left col-md-8" style="text-align: left">Company Expert
                     : {{ object.expert.get_full_name }}</h3>
-                <h3 class="h5 text-light  text-right col-md-4" style="text-align: left">Date
+                <h3 class="h5 text-dark  text-right col-md-4" style="text-align: left">Date
                     : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
             </div>
-            <h3 class="h5 text-light  text-left" style="text-align: left">Total Products Type
+            <h3 class="h5 text-dark  text-left" style="text-align: left">Total Products Type
                 : {{ object.quoteitem_set.all.count }}</h3>
         </th>
     </tr>
@@ -56,26 +62,26 @@
 
 
 {# this table shows the Customer details #}
-<table class="table table-dark table-bordered tabular">
+<table class="table table-light table-bordered tabular">
     <thead>
     <tr>
         <th>
-            <h2 class="h3 text-light font-weight-bold text-left" style="text-align: left">Customer Details : </h2>
+            <h2 class="h3 text-dark font-weight-bold text-left" style="text-align: left">Customer Details : </h2>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-4" style="text-align: left">Name
+                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">Name
                     : {{ object.organization.organization_name }}</h5>
-                <h5 class="h5 text-light text-right col-md-8" style="text-align: left">Representative Full Name
+                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">Representative Full Name
                     : {{ object.organization.representative_full_name }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-2" style="text-align: left">Province : {{ object.organization.province }}</h5>
-                <h5 class="h5 text-light text-right col-md-10" style="text-align: left">Representative Phone Number
+                <h5 class="h5 text-dark text-left col-md-2" style="text-align: left">Province : {{ object.organization.province }}</h5>
+                <h5 class="h5 text-dark text-right col-md-10" style="text-align: left">Representative Phone Number
                     : {{ object.organization.representative_phone_number }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-light text-left col-md-4" style="text-align: left">Telephone
+                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">Telephone
                     : {{ object.organization.telephone }}</h5>
-                <h5 class="h5 text-light text-right col-md-8" style="text-align: left">Representative Email
+                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">Representative Email
                     : {{ object.organization.representative_email }}</h5>
             </div>
         </th>
@@ -85,17 +91,17 @@
 
 
 {# this table shows the Purchased Products headers #}
-<table class="table table-dark table-bordered tabular">
+<table class="table table-light table-bordered tabular">
     <thead>
     <tr>
-        <th><h2 class="h2 text-light font-weight-bold text-center">Purchased Products</h2></th>
+        <th><h2 class="h2 text-dark font-weight-bold text-center">Purchased Products</h2></th>
     </tr>
     </thead>
 </table>
 
 
 {# this table shows the Purchased Products details #}
-<table class="table table-dark table-bordered tabular" id="products">
+<table class="table table-light table-bordered tabular" id="products">
     <thead>
     <tr>
         <th id="products">Number</th>
