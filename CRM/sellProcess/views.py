@@ -8,6 +8,8 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from organization import models as organmodels
 from company import models as compmodels
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+
 from . import models
 from .forms import quote_item_create_formset
 from django.shortcuts import render, redirect
@@ -108,13 +110,13 @@ class FollowUpView(LoginRequiredMixin, CreateView):
         return JsonResponse(data={
             'success': 'True',
             'success_message': 'Record Has Been Saved Successfully.'
-        }, status=200)
+        }, status=HTTP_201_CREATED)
 
     def form_invalid(self, form):
         return JsonResponse(data={
             'success': 'False',
             'error_message': 'Failed! Please Fill The Input Correctly.'
-        }, status=400)
+        }, status=HTTP_400_BAD_REQUEST)
 
     def get_context_data(self, **kwargs):
         context = {
