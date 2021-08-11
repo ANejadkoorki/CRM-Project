@@ -4,6 +4,7 @@ docker-compose
 psycopg2-binary
 django-jalali
 django-rest-framework
+djangorestframework_simplejwt
 pymemcache
 django-widget-tweaks
 weasyprint

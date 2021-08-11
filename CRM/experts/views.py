@@ -5,8 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views.generic import FormView, RedirectView, DetailView, UpdateView
+from rest_framework import viewsets, permissions
 
-from . import forms
+from . import forms, serializers
 
 # Create your views here.
 from django.utils.decorators import method_decorator
@@ -88,4 +89,12 @@ class ProfileEdit(LoginRequiredMixin, UpdateView):
         return redirect('experts:edit-profile', user_pk)
 
 
+"""
+    DRF API VIEW SETS
+"""
 
+
+class ExpertViewSet(viewsets.ModelViewSet):
+    queryset = get_user_model().objects.all()
+    serializer_class = serializers.ExpertSerializer
+    permission_classes = [permissions.IsAuthenticated]

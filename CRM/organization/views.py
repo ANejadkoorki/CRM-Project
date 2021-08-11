@@ -4,7 +4,10 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from . import models, forms
+from rest_framework import viewsets, permissions
+from rest_framework.pagination import PageNumberPagination
+
+from . import models, forms, serializers
 from company import models as companyModels
 from sellProcess import models as SPmodels
 # Create your views here.
@@ -116,3 +119,27 @@ class OrganizationDetail(LoginRequiredMixin, DetailView):
         context['our_offer_products'] = self.get_offer_products()
         context['organization_follow_up_objects'] = SPmodels.FollowUp.objects.filter(organization_id=self.kwargs['pk'])
         return context
+
+
+"""
+    DRF API VIEW SETS
+"""
+
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 2
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    queryset = models.Organization.objects.all()
+    serializer_class = serializers.OrganizationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+
+class OrganizationsProductsViewSet(viewsets.ModelViewSet):
+    queryset = models.OrganizationsProduct.objects.all()
+    serializer_class = serializers.OrganizationsProductsSerializer
+    permission_classes = [permissions.IsAuthenticated]
