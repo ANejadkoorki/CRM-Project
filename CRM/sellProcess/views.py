@@ -43,8 +43,15 @@ class AddQuote(LoginRequiredMixin, CreateView):
                                                                     expert=self.request.user)
                 # create quote object
                 quote = models.Quote.objects.create(expert=self.request.user, organization=organization)
+
                 for form in formset:
                     form.instance.quote = quote
+
+                    # get quote item product price
+                    cleaned_data = form.cleaned_data
+                    price = cleaned_data.get('product').price
+                    form.instance.price = price
+
                     # saving each form (quote_item) to model QuoteItem
                     form.save()
                 messages.success(self.request, 'Quote Created Successfully.')

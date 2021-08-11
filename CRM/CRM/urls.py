@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import rest_auth
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -27,7 +28,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 router = DefaultRouter()
 router.register('experts', expert_views.ExpertViewSet)
-router.register('organ/api/organizations', organ_views.OrganizationViewSet)
+router.register('organ/organizations', organ_views.OrganizationViewSet)
 router.register('organ/api/organizationsProducts', organ_views.OrganizationsProductsViewSet)
 
 # urls:
@@ -42,6 +43,7 @@ urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/', include('rest_auth.urls'))
 ]
 
 # passing STATIC URL and MEDIA URL to project`s root

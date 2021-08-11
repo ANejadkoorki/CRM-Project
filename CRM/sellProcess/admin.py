@@ -26,6 +26,7 @@ class QuoteItemAdmin(admin.ModelAdmin):
         'id',
         'quote',
         'product',
+        'price',
         'qty',
         'discount',
     ]

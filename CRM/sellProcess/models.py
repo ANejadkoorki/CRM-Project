@@ -56,6 +56,7 @@ class QuoteItem(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_('product')
     )
+    price = models.PositiveIntegerField(default=0, verbose_name=_('price'))
     qty = models.PositiveIntegerField(default=0, verbose_name=_('qty'))
     # discount in percent
     discount = models.FloatField(default=0, verbose_name=_('discount in percent'))
@@ -67,24 +68,23 @@ class QuoteItem(models.Model):
         # tc = total cost
         # if quote item have tax
         taxability = compmodels.CompanyProduct.objects.get(pk=self.product_id).have_tax
-        product_obj_price = compmodels.CompanyProduct.objects.get(pk=self.product_id).price
         if taxability:
             # tax = 9 percent
             if self.discount > 0:
-                tc = ((self.qty * product_obj_price) * 1.09)
+                tc = ((self.qty * self.price) * 1.09)
                 tc *= ((100 - self.discount) / 100)
                 return tc
             else:
-                tc = ((self.qty * product_obj_price) * 1.09)
+                tc = ((self.qty * self.price) * 1.09)
                 return tc
         # if quote item doesn't have tax
         else:
             if self.discount > 0:
-                tc = (self.qty * product_obj_price)
+                tc = (self.qty * self.price)
                 tc *= ((100 - self.discount) / 100)
                 return tc
             else:
-                tc = (self.qty * product_obj_price)
+                tc = (self.qty * self.price)
                 return tc
 
 
