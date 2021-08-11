@@ -86,3 +86,6 @@ class ProfileEdit(LoginRequiredMixin, UpdateView):
         messages.error(self.request, 'Please Fill The Inputs Correctly.')
         user_pk = self.get_object().pk
         return redirect('experts:edit-profile', user_pk)
+
+
+
