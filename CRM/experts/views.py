@@ -97,4 +97,4 @@ class ProfileEdit(LoginRequiredMixin, UpdateView):
 class ExpertViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = serializers.ExpertSerializer
-    permission_classes = [permissions.IsAuthenticated]
+

@@ -135,7 +135,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 class OrganizationViewSet(viewsets.ModelViewSet):
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
-    permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
@@ -147,4 +146,3 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 class OrganizationsProductsViewSet(viewsets.ModelViewSet):
     queryset = models.OrganizationsProduct.objects.all()
     serializer_class = serializers.OrganizationsProductsSerializer
-    permission_classes = [permissions.IsAuthenticated]
