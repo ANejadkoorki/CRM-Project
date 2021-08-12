@@ -10,59 +10,67 @@
     <li class="nav-item active dropdown">{% endblock %}
 
 {# page content #}
-{% block page_content %}
+{% block content_alignment %}
+    <div class="container">
+        <div class="col-12">
+            {% block page_content %}
 
-    {# page header #}
-    <h1 class="h1 text-info mb-3">Company Product`s List : </h1>
+                {# page header #}
+                <h1 class="h1 text-info mb-3">Company Product`s List : </h1>
 
 
-    <div class="col">
-        <div class="row ">
-            {# table of company products #}
-            <table class="table table-dark table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Product`s Name</th>
-                    <th scope="col">Product`s Price</th>
-                    <th scope="col">Have Tax</th>
-                    <th scope="col">Catalog(PDF)</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for object in object_list %}
-                    <tr>
-                        <th scope="row">{{ object.pk }}</th>
-                        <td><a href="{% url 'company:company-product-detail' object.pk %}" class="text-info">{{ object.product_name }}</a></td>
-                        <td>{{ object.price }}</td>
-                        <td>
-                            {% if object.have_tax %}
-                                <span class="justify-content-center">✅</span>
-                            {% else %}
-                                <span>❌</span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if object.pdf_catalog %}
-                            <a href="{{ object.pdf_catalog.url }}">DOWNLOAD</a>
-                            {% else %}
-                                <span class="text-light">None</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                <div class="col">
+                    <div class="row ">
+                        {# table of company products #}
+                        <table class="table table-dark table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Product`s Name</th>
+                                <th scope="col">Product`s Price</th>
+                                <th scope="col">Have Tax</th>
+                                <th scope="col">Catalog(PDF)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for object in object_list %}
+                                <tr>
+                                    <th scope="row">{{ object.pk }}</th>
+                                    <td><a href="{% url 'company:company-product-detail' object.pk %}"
+                                           class="text-info">{{ object.product_name }}</a></td>
+                                    <td>{{ object.price }}</td>
+                                    <td>
+                                        {% if object.have_tax %}
+                                            <span class="justify-content-center">✅</span>
+                                        {% else %}
+                                            <span>❌</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if object.pdf_catalog %}
+                                            <a href="{{ object.pdf_catalog.url }}">DOWNLOAD</a>
+                                        {% else %}
+                                            <span class="text-light">None</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
 
-        {# products pagination #}
-        <div class="row">
-            <div class="container col-md-auto">
-                <div class="col-md-12">
-                    {% include 'company/pagination.html' %}
+                    {# products pagination #}
+                    <div class="row">
+                        <div class="container col-md-auto">
+                            <div class="col-md-12">
+                                {% include 'company/pagination.html' %}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </div>
+            {% endblock %}
 
+        </div>
     </div>
 {% endblock %}

@@ -13,54 +13,61 @@
 {% block crm_desc %}{% endblock %}
 
 {# page content #}
-{% block page_content %}
-    <h1 class="text-info font-weight-bold">Add Quote : </h1>
+{% block content_alignment %}
+    <div class="container">
+        <div class="col-12">
+            {% block page_content %}
+                <h1 class="text-info font-weight-bold">Add Quote : </h1>
 
-    <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ formset.management_form }}
+                <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
 
-        {# choose organization  #}
-        <div class="form-group">
-            <label for="organization" class="text-info">Choose Organization : </label>
-            <select class="form-control" id="organization" name="organization" required>
-                <option value="0">None</option>
-                {% for organization in organizations %}
-                    <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
-                {% endfor %}
-            </select>
+                    {# choose organization  #}
+                    <div class="form-group">
+                        <label for="organization" class="text-info">Choose Organization : </label>
+                        <select class="form-control" id="organization" name="organization" required>
+                            <option value="0">None</option>
+                            {% for organization in organizations %}
+                                <option value="{{ organization.pk }}">{{ organization.organization_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <h2 class="h1 text-light font-weight-bold">
+                        ---------------------------------------------------------------------------------</h2>
+
+                    {# quote item form #}
+                    {% for form in formset %}
+                        <div class='table table-dark table-bordered'>
+                            <table class='no_error'>
+                                <thead>
+                                <tr>
+                                    <th>Choose Product :</th>
+                                    <th>Quantity :</th>
+                                    <th>Discount in Percent :</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td aria-required="true">{{ form.product }}</td>
+                                    <td>{{ form.qty }}</td>
+                                    <td>{{ form.discount }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+
+                    <input type="button" class="btn btn-info" value="Add another Item" id="add_more">
+
+                    <button class="btn btn-success col-12 mt-4" type="submit">Finalize</button>
+                </form>
+            {% endblock %}
         </div>
-
-        <h2 class="h1 text-light font-weight-bold">
-            ------------------------------------------------------------------</h2>
-
-        {# quote item form #}
-        {% for form in formset %}
-            <div class='table table-dark table-bordered'>
-                <table class='no_error'>
-                    <thead>
-                        <tr>
-                            <th>Choose Product : </th>
-                            <th>Quantity : </th>
-                            <th>Discount in Percent : </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td aria-required="true">{{ form.product }}</td>
-                            <td>{{ form.qty }}</td>
-                            <td>{{ form.discount }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        {% endfor %}
-
-        <input type="button" class="btn btn-info" value="Add another Item" id="add_more">
-
-        <button class="btn btn-success col-12 mt-4" type="submit">Finalize</button>
-    </form>
+    </div>
 {% endblock %}
+
 
 {% block page_scripts %}
     <script>
@@ -70,6 +77,7 @@
             });
 
             {# this js function used to update management form and add one form to get another quote item #}
+
             function cloneMore(selector, type) {
                 var newElement = $(selector).clone(true);
                 var total = $('#id_' + type + '-TOTAL_FORMS').val();
