@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@
     <link href="{% static 'css/styles.css' %} " rel="stylesheet">
 
     {# page title handling and block #}
-    <title>{{ base_title }}{% block page_title %}Home{% endblock %}</title>
+    <title>{{ base_title }}{% block page_title %}{% trans 'Home' %}{% endblock %}</title>
 </head>
 
 
@@ -19,7 +20,7 @@
 {# nav bar handling and block #}
 {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">CRM System</a>
+        <a class="navbar-brand mb-0 h1" href="{% url 'company:home' %}">{% trans 'CRM System' %}</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {# home nav item #}
@@ -27,7 +28,7 @@
                 {% block home_navactive %}
                     <li class="nav-item active ">
                 {% endblock %}
-                <a class="nav-link" href="{% url 'company:home' %}">Home </a>
+                <a class="nav-link" href="{% url 'company:home' %}">{% trans 'Home ' %}</a>
                 </li>
 
                 {# log in nav item #}
@@ -36,7 +37,7 @@
                     {% block login_navlink %}
                         <li class="nav-item">
                     {% endblock %}
-                <a class="nav-link" href="{% url 'experts:login' %}">Log in</a>
+                <a class="nav-link" href="{% url 'experts:login' %}">{% trans 'Log in' %}</a>
                 </li>
                 {% endif %}
 
@@ -49,15 +50,14 @@
                     {% endblock %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Organizations
+                    {% trans 'Organizations' %}
                 </a>
 
                 {# organization drop down options #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'organization:add-organization' %}">Add Organization</a>
-                    <a class="dropdown-item" href="{% url 'organization:organization-list' %}">Organizations List</a>
-                    <a class="dropdown-item" href="{% url 'organization:add-organizations-product' %}">Add Organizations
-                        Product</a>
+                    <a class="dropdown-item" href="{% url 'organization:add-organization' %}">{% trans 'Add Organization' %}</a>
+                    <a class="dropdown-item" href="{% url 'organization:organization-list' %}">{% trans 'Organizations List' %}</a>
+                    <a class="dropdown-item" href="{% url 'organization:add-organizations-product' %}">{% trans 'Add Organizations Product' %}</a>
                 </div>
 
 
@@ -68,13 +68,13 @@
                 {% endblock %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Quote
+                    {% trans 'Quote' %}
                 </a>
 
                 {# quote drop down options #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'sellProcess:add-quote' %}">Add Quote</a>
-                    <a class="dropdown-item" href="{% url 'sellProcess:quote-list' %}">Quotes List</a>
+                    <a class="dropdown-item" href="{% url 'sellProcess:add-quote' %}">{% trans 'Add Quote' %}</a>
+                    <a class="dropdown-item" href="{% url 'sellProcess:quote-list' %}">{% trans 'Quotes List' %}</a>
                 </div>
                 </li>
 
@@ -86,13 +86,13 @@
                     {% endblock %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Company
+                    {% trans 'Company' %}
                 </a>
 
                 {# company drop down options #}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'company:add-company-product' %}">Add Product</a>
-                    <a class="dropdown-item" href="{% url 'company:list-company-product' %}">Products List</a>
+                    <a class="dropdown-item" href="{% url 'company:add-company-product' %}">{% trans 'Add Product' %}</a>
+                    <a class="dropdown-item" href="{% url 'company:list-company-product' %}">{% trans 'Products List' %}</a>
                 </div>
                 </li>
 
@@ -102,12 +102,12 @@
                         <li class="nav-item">
                     {% endblock %}
                 <a class="nav-link"
-                   href="{% url 'experts:profile' request.user.pk %}">Profile({{ request.user.username }})</a>
+                   href="{% url 'experts:profile' request.user.pk %}">{% trans 'Profile' %}({{ request.user.username }})</a>
                 </li>
 
                     {# log out nav item #}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'experts:logout' %}">Log out</a>
+                        <a class="nav-link" href="{% url 'experts:logout' %}">{% trans 'Log out' %}</a>
                     </li>
                 {% endif %}
 
@@ -139,9 +139,8 @@
         {% block crm_desc %}
             <div class="col">
                 {% block page_base_detail %}
-                    <h1 class="mt-lg-5 mr-3 text-left display-1 text-info font-weight-bold">CRM :</h1>
-                    <h2 class="ml-lg-5 text-left display-4 text-info font-weight-bold">Customer Relationship
-                        Management</h2>
+                    <h1 class="mt-lg-5 mr-3 text-left display-1 text-info font-weight-bold">{% trans 'CRM :' %}</h1>
+                    <h2 class="ml-lg-5 text-left display-4 text-info font-weight-bold">{% trans 'Customer Relationship Management' %}</h2>
                 {% endblock %}
             </div>
         {% endblock %}

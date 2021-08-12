@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Company Products List{% endblock %}
+{% block page_title %}{% trans 'Company Products List' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -16,7 +17,7 @@
             {% block page_content %}
 
                 {# page header #}
-                <h1 class="h1 text-info mb-3">Company Product`s List : </h1>
+                <h1 class="h1 text-info mb-3">{% trans 'Company Product`s List : ' %}</h1>
 
 
                 <div class="col">
@@ -25,11 +26,11 @@
                         <table class="table table-dark table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Product`s Name</th>
-                                <th scope="col">Product`s Price</th>
-                                <th scope="col">Have Tax</th>
-                                <th scope="col">Catalog(PDF)</th>
+                                <th scope="col">{% trans 'ID' %}</th>
+                                <th scope="col">{% trans 'Product`s Name' %}</th>
+                                <th scope="col">{% trans 'Product`s Price' %}</th>
+                                <th scope="col">{% trans 'Have Tax' %}</th>
+                                <th scope="col">{% trans 'Catalog(PDF)' %}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,9 +49,9 @@
                                     </td>
                                     <td>
                                         {% if object.pdf_catalog %}
-                                            <a href="{{ object.pdf_catalog.url }}">DOWNLOAD</a>
+                                            <a href="{{ object.pdf_catalog.url }}">{% trans 'DOWNLOAD' %}</a>
                                         {% else %}
-                                            <span class="text-light">None</span>
+                                            <span class="text-light">{% trans 'None' %}</span>
                                         {% endif %}
                                     </td>
                                 </tr>

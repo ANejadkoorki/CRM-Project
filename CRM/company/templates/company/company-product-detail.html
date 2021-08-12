@@ -1,6 +1,7 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 {# page title #}
-{% block page_title %}Product Detail{% endblock %}
+{% block page_title %}{% trans 'Product Detail' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -17,17 +18,16 @@
         <div class="col-12">
             {% block page_content %}
                 {# headers #}
-                <h1 class="h1 text-info">Company Product Detail : </h1>
+                <h1 class="h1 text-info">{% trans 'Company Product Detail : ' %}</h1>
                 <h3 class="text-dark bg-light">{{ object.product_name }}</h3>
 
                 {# buttons #}
                 <div class="row mt-4 justify-content-center">
                     <div class="col-md-auto">
-                        <a class="btn btn-secondary" href="{% url 'company:list-company-product' %}">Return to Previous
-                            Page</a>
+                        <a class="btn btn-secondary" href="{% url 'company:list-company-product' %}">{% trans 'Return to Previous Page' %}</a>
                     </div>
                     <div class="col-md-auto">
-                        <a class="btn btn-secondary" href="{% url 'company:company-product-edit' object.pk %}">Edit</a>
+                        <a class="btn btn-secondary" href="{% url 'company:company-product-edit' object.pk %}">{% trans 'Edit' %}</a>
                     </div>
                 </div>
 
@@ -36,9 +36,9 @@
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Price</th>
-                            <th scope="col">Have Tax</th>
-                            <th scope="col">Useful For Organization Products</th>
+                            <th scope="col">{% trans 'Price' %}</th>
+                            <th scope="col">{% trans 'Have Tax' %}</th>
+                            <th scope="col">{% trans 'Useful For Organization Products' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,7 +68,7 @@
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Technical Description</th>
+                            <th scope="col">{% trans 'Technical Description' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -84,7 +84,7 @@
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Catalog Image:</th>
+                            <th scope="col">{% trans 'Catalog Image:' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -94,7 +94,7 @@
                                     <img class="img-thumbnail" src="{{ object.image_catalog.url }}">
                                 </td>
                             {% else %}
-                                <td class="text-dark bg-light">No Image Catalog</td>
+                                <td class="text-dark bg-light">{% trans 'No Image Catalog' %}</td>
                             {% endif %}
                         </tr>
                         </tbody>
