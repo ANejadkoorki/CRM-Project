@@ -138,6 +138,11 @@ class OrganizationViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = StandardResultsSetPagination
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.filter(expert=self.request.user)
+        return qs
+
 
 class OrganizationsProductsViewSet(viewsets.ModelViewSet):
     queryset = models.OrganizationsProduct.objects.all()
