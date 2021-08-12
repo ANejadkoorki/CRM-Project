@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Follow Up{% endblock %}
+{% block page_title %}{% trans 'Follow Up' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -15,7 +16,7 @@
 {# page content #}
 {% block page_content %}
     {# page header #}
-    <h1 class="h1 text-info">Record Follow Up For {{ organization_obj.organization_name }} : </h1>
+    <h1 class="h1 text-info">{% trans 'Record Follow Up For ' %}{{ organization_obj.organization_name }} : </h1>
 
     {# form : record follow up for organization #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
@@ -23,7 +24,7 @@
 
         {# follow up description #}
         <div class="form-group">
-            <label for="description" class="text-info">Follow Up Description : </label>
+            <label for="description" class="text-info">{% trans 'Follow Up Description : ' %}</label>
             <textarea id="description" name="description" class="form-control text-primary" type="text" rows="5"
                       placeholder="Please Enter The Follow Up Here"></textarea>
         </div>
@@ -31,7 +32,7 @@
     </form>
 
     {# form record button #}
-    <button class="btn btn-info mb-3" type="submit" id="record_btn">Record</button>
+    <button class="btn btn-info mb-3" type="submit" id="record_btn">{% trans 'Record' %}</button>
 
 
 {% endblock %}

@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Add Quote{% endblock %}
+{% block page_title %}{% trans 'Add Quote' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -17,7 +18,7 @@
     <div class="container">
         <div class="col-12">
             {% block page_content %}
-                <h1 class="text-info font-weight-bold">Add Quote : </h1>
+                <h1 class="text-info font-weight-bold">{% trans 'Add Quote : ' %}</h1>
 
                 <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -25,7 +26,7 @@
 
                     {# choose organization  #}
                     <div class="form-group">
-                        <label for="organization" class="text-info">Choose Organization : </label>
+                        <label for="organization" class="text-info">{% trans 'Choose Organization : ' %}</label>
                         <select class="form-control" id="organization" name="organization" required>
                             <option value="0">None</option>
                             {% for organization in organizations %}
@@ -43,9 +44,9 @@
                             <table class='no_error'>
                                 <thead>
                                 <tr>
-                                    <th>Choose Product :</th>
-                                    <th>Quantity :</th>
-                                    <th>Discount in Percent :</th>
+                                    <th>{% trans 'Choose Product :' %}</th>
+                                    <th>{% trans 'Quantity :' %}</th>
+                                    <th>{% trans 'Discount in Percent :' %}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +62,7 @@
 
                     <input type="button" class="btn btn-info" value="Add another Item" id="add_more">
 
-                    <button class="btn btn-success col-12 mt-4" type="submit">Finalize</button>
+                    <button class="btn btn-success col-12 mt-4" type="submit">{% trans 'Finalize' %}</button>
                 </form>
             {% endblock %}
         </div>

@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Quotes List{% endblock %}
+{% block page_title %}{% trans 'Quotes List' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -14,19 +15,19 @@
     <div class="container">
         <div class="col-12">
             {% block page_content %}
-                <h1 class="h1 text-info">Quotes List : </h1>
+                <h1 class="h1 text-info">{% trans 'Quotes List : ' %}</h1>
 
                 {# table of quotes #}
                 <table class="table table-dark table-bordered">
                     <thead>
 
                     <tr>
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Products</th>
-                        <th>PDF Export</th>
-                        <th>Operation</th>
-                        <th>Details</th>
+                        <th>{% trans 'ID' %}</th>
+                        <th>{% trans 'Customer' %}</th>
+                        <th>{% trans 'Products' %}</th>
+                        <th>{% trans 'PDF Export' %}</th>
+                        <th>{% trans 'Operation' %}</th>
+                        <th>{% trans 'Details' %}</th>
                     </tr>
 
                     </thead>
@@ -39,14 +40,14 @@
                             <td>{{ object.organization }}</td>
                             <td>
                                 {% for quote_item in object.quoteitem_set.all %}
-                                    {{ forloop.counter }}-{{ quote_item.product.product_name }}<br>quantity :
+                                    {{ forloop.counter }}-{{ quote_item.product.product_name }}<br>{% trans 'quantity' %} :
                                     {{ quote_item.qty }} <br>
                                 {% endfor %}
                             </td>
-                            <td><a href="{% url 'sellProcess:quote-pdf' object.pk %}">PDF</a></td>
-                            <td><a href="{% url 'emailApp:send-email' object.pk %}">Send Email to Representative</a>
+                            <td><a href="{% url 'sellProcess:quote-pdf' object.pk %}">{% trans 'PDF' %}</a></td>
+                            <td><a href="{% url 'emailApp:send-email' object.pk %}">{% trans 'Send Email to Representative' %}</a>
                             </td>
-                            <td><a href="{% url 'sellProcess:quote-detail' object.pk %}">Show Details</a></td>
+                            <td><a href="{% url 'sellProcess:quote-detail' object.pk %}">{% trans 'Show Details' %}</a></td>
                         </tr>
                     {% endfor %}
 

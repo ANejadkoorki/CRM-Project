@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load mytags %}
 <html lang="en">
 {% load static %}
@@ -11,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{% static 'css/bootstrap.min.css' %} " rel="stylesheet">
     <link href="{% static 'css/styles.css' %} " rel="stylesheet">
-    <title>{{ base_title }}{% block page_title %}Quote Pdf{% endblock %}</title>
+    <title>{{ base_title }}{% block page_title %}{% trans 'Quote Pdf' %}{% endblock %}</title>
 
     {# tables pdf style #}
     <style>
@@ -46,14 +47,14 @@
     <thead>
     <tr class="col-12">
         <th>
-            <h1 class="h1 text-dark font-weight-bold text-center" style="text-align: center">CRM System</h1>
+            <h1 class="h1 text-dark font-weight-bold text-center" style="text-align: center">{% trans 'CRM System' %}</h1>
             <div class="row">
-                <h3 class="h5 text-dark  text-left col-md-8" style="text-align: left">Company Expert
+                <h3 class="h5 text-dark  text-left col-md-8" style="text-align: left">{% trans 'Company Expert' %}
                     : {{ object.expert.get_full_name }}</h3>
-                <h3 class="h5 text-dark  text-right col-md-4" style="text-align: left">Date
+                <h3 class="h5 text-dark  text-right col-md-4" style="text-align: left">{% trans 'Date' %}
                     : {{ object.created_on|jdate:"%Y-%m-%d" }}</h3>
             </div>
-            <h3 class="h5 text-dark  text-left" style="text-align: left">Total Products Type
+            <h3 class="h5 text-dark  text-left" style="text-align: left">{% trans 'Total Products Type' %}
                 : {{ object.quoteitem_set.all.count }}</h3>
         </th>
     </tr>
@@ -66,22 +67,22 @@
     <thead>
     <tr>
         <th>
-            <h2 class="h3 text-dark font-weight-bold text-left" style="text-align: left">Customer Details : </h2>
+            <h2 class="h3 text-dark font-weight-bold text-left" style="text-align: left">{% trans 'Customer Details : ' %}</h2>
             <div class="row">
-                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">Name
+                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">{% trans 'Name' %}
                     : {{ object.organization.organization_name }}</h5>
-                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">Representative Full Name
+                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">{% trans 'Representative Full Name' %}
                     : {{ object.organization.representative_full_name }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-dark text-left col-md-2" style="text-align: left">Province : {{ object.organization.province }}</h5>
-                <h5 class="h5 text-dark text-right col-md-10" style="text-align: left">Representative Phone Number
+                <h5 class="h5 text-dark text-left col-md-2" style="text-align: left">{% trans 'Province : ' %}{{ object.organization.province }}</h5>
+                <h5 class="h5 text-dark text-right col-md-10" style="text-align: left">{% trans 'Representative Phone Number' %}
                     : {{ object.organization.representative_phone_number }}</h5>
             </div>
             <div class="row">
-                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">Telephone
+                <h5 class="h5 text-dark text-left col-md-4" style="text-align: left">{% trans 'Telephone' %}
                     : {{ object.organization.telephone }}</h5>
-                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">Representative Email
+                <h5 class="h5 text-dark text-right col-md-8" style="text-align: left">{% trans 'Representative Email' %}
                     : {{ object.organization.representative_email }}</h5>
             </div>
         </th>
@@ -94,7 +95,7 @@
 <table class="table table-light table-bordered tabular">
     <thead>
     <tr>
-        <th><h2 class="h2 text-dark font-weight-bold text-center">Purchased Products</h2></th>
+        <th><h2 class="h2 text-dark font-weight-bold text-center">{% trans 'Purchased Products' %}</h2></th>
     </tr>
     </thead>
 </table>
@@ -104,13 +105,13 @@
 <table class="table table-light table-bordered tabular" id="products">
     <thead>
     <tr>
-        <th id="products">Number</th>
-        <th id="products">Name</th>
-        <th id="products">Taxability</th>
-        <th id="products">Quantity</th>
-        <th id="products">Base Price</th>
-        <th id="products">Discount(Percent)</th>
-        <th id="products">Total Cost</th>
+        <th id="products">{% trans 'Number' %}</th>
+        <th id="products">{% trans 'Name' %}</th>
+        <th id="products">{% trans 'Taxability' %}</th>
+        <th id="products">{% trans 'Quantity' %}</th>
+        <th id="products">{% trans 'Base Price' %}</th>
+        <th id="products">{% trans 'Discount(Percent)' %}</th>
+        <th id="products">{% trans 'Total Cost' %}</th>
     </tr>
     </thead>
     <tbody>
@@ -120,9 +121,9 @@
             <td id="products">{{ quote_item.product.product_name }}</td>
             <td id="products">
                 {% if quote_item.product.have_tax %}
-                    YES
+                    {% trans 'YES' %}
                 {% else %}
-                    NO
+                    {% trans 'NO' %}
                 {% endif %}
             </td>
             <td id="products">{{ quote_item.qty }}</td>
@@ -134,7 +135,7 @@
     </tbody>
     <tfoot>
     <tr>
-        <th class="col-md-9" colspan="6">Final amount payable :</th>
+        <th class="col-md-9" colspan="6">{% trans 'Final amount payable :' %}</th>
         <th class="col-md-3 bg-success" colspan="1">{{ object.calculate_final_amount_payable }}</th>
     </tr>
     </tfoot>
