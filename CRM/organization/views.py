@@ -22,7 +22,11 @@ class AddOrganization(LoginRequiredMixin, CreateView):
     model = models.Organization
     form_class = forms.OrganizationForm
     template_name = 'organization/add-organization-template.html'
-    extra_context = {'ManufacturedProducts': models.OrganizationsProduct.objects.all()}
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context['ManufacturedProducts'] = models.OrganizationsProduct.objects.all()
+        return context
 
     def form_valid(self, form):
         form.instance.expert = self.request.user
