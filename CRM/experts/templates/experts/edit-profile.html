@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Edit Profile{% endblock %}
+{% block page_title %}{% trans 'Edit Profile' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -18,7 +19,7 @@
 {# page_content #}
 {% block page_content %}
     {# headers #}
-    <h1 class="h2 text-info">Edit Profile : <span class="text-dark bg-light">{{ request.user.username }}</span></h1>
+    <h1 class="h2 text-info">{% trans 'Edit Profile : ' %}<span class="text-dark bg-light">{{ request.user.username }}</span></h1>
 
 
     {# form : edit profile  #}
@@ -26,22 +27,22 @@
         {% csrf_token %}
 
         <div class="form-group">
-            <label for="first_name" class="text-info">First Name :</label>
+            <label for="first_name" class="text-info">{% trans 'First Name :' %}</label>
             <input type="text" placeholder="User First Name" id="first_name" name="first_name" class="form-control" value="{{ object.first_name }}">
         </div>
 
         <div class="form-group">
-            <label for="last_name" class="text-info">Last Name :</label>
+            <label for="last_name" class="text-info">{% trans 'Last Name :' %}</label>
             <input type="text" placeholder="User Last Name" id="last_name" name="last_name" class="form-control" value="{{ object.last_name }}">
         </div>
 
 
         <div class="form-group">
-            <label for="username" class="text-info">Username :</label>
+            <label for="username" class="text-info">{% trans 'Username :' %}</label>
             <input type="text" placeholder="Username" id="username" name="username" class="form-control" value="{{ object.username }}">
         </div>
 
-        <button class="btn btn-info">Edit</button>
+        <button class="btn btn-info">{% trans 'Edit' %}</button>
 
 
     </form>

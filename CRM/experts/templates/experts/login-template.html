@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Login{% endblock %}
+{% block page_title %}{% trans 'Login' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -14,7 +15,7 @@
 {# page content #}
 {% block page_content %}
     {# page header #}
-    <h1 class="text-info">Login :</h1>
+    <h1 class="text-info">{% trans 'Login :' %}</h1>
 
     {# form : login #}
     <form class="mt-4" method="post" enctype="multipart/form-data">
@@ -22,19 +23,19 @@
 
         {# username #}
         <div class="form-group">
-            <label for="username" class="text-info">Username : </label>
+            <label for="username" class="text-info">{% trans 'Username : ' %}</label>
             <input id="username" name="username" class="form-control text-primary" type="text"
                    placeholder="Please Enter Your Username">
         </div>
 
         {# password #}
         <div class="form-group">
-            <label for="password" class="bg-dark text-info">Password : </label>
+            <label for="password" class="bg-dark text-info">{% trans 'Password : ' %}</label>
             <input id="password" name="password" class="form-control text-primary" type="password"
                    placeholder="Please Enter Your Password">
         </div>
 
         {# form submit button #}
-        <button class="btn btn-info" type="submit">Login</button>
+        <button class="btn btn-info" type="submit">{% trans 'Login' %}</button>
     </form>
 {% endblock %}

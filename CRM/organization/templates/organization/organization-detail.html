@@ -1,8 +1,9 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 {% load mytags %}
 
 {# page title #}
-{% block page_title %}Organizations Detail{% endblock %}
+{% block page_title %}{% trans 'Organizations Detail' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -19,25 +20,22 @@
         <div class="col-12">
             {% block page_content %}
                 {# headers #}
-                <h1 class="h1 text-info">Organization Detail : </h1>
+                <h1 class="h1 text-info">{% trans 'Organization Detail : ' %}</h1>
                 <h3 class="text-dark bg-light">{{ object.organization_name }}</h3>
 
 
                 {# buttons #}
                 <div class="row mt-4 justify-content-center">
                     <div class="col-md-auto">
-                        <a class="btn btn-secondary" href="{% url 'organization:organization-list' %}">Return to
-                            Previous
-                            Page</a>
+                        <a class="btn btn-secondary" href="{% url 'organization:organization-list' %}">{% trans 'Return to Previous Page' %}</a>
                     </div>
                     <div class="col-md-auto">
-                        <a class="btn btn-secondary" href="{% url 'sellProcess:add-quote' %}">Pro Forma Invoice
-                            Issuance</a>
+                        <a class="btn btn-secondary" href="{% url 'sellProcess:add-quote' %}">{% trans 'Pro Forma Invoice Issuance' %}</a>
                     </div>
                     {% if request.user == object.expert %}
                         <div class="col-md-auto">
                             <a class="btn btn-secondary"
-                               href="{% url 'organization:edit-organization' object.pk %}">Edit</a>
+                               href="{% url 'organization:edit-organization' object.pk %}">{% trans 'Edit' %}</a>
                         </div>
                     {% endif %}
                 </div>
@@ -47,10 +45,10 @@
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Province</th>
-                            <th scope="col">telephone</th>
-                            <th scope="col">Registered Date</th>
-                            <th scope="col">Workers Quantity</th>
+                            <th scope="col">{% trans 'Province' %}</th>
+                            <th scope="col">{% trans 'telephone' %}</th>
+                            <th scope="col">{% trans 'Registered Date' %}</th>
+                            <th scope="col">{% trans 'Workers Quantity' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,9 +67,9 @@
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Registrar(expert)</th>
-                            <th scope="col">Manufactured Products</th>
-                            <th scope="col" class="bg-success">Our Company Offers</th>
+                            <th scope="col">{% trans 'Registrar(expert)' %}</th>
+                            <th scope="col">{% trans 'Manufactured Products' %}</th>
+                            <th scope="col" class="bg-success">{% trans 'Our Company Offers' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -97,14 +95,14 @@
                 </div>
 
                 {# representative details #}
-                <h3 class="h1 text-info">Representative Details:</h3>
+                <h3 class="h1 text-info">{% trans 'Representative Details:' %}</h3>
                 <div class="row mt-4 justify-content-center">
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">{% trans 'Full Name' %}</th>
+                            <th scope="col">{% trans 'Phone Number' %}</th>
+                            <th scope="col">{% trans 'Email' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -118,15 +116,15 @@
                 </div>
 
                 {# follow-up history #}
-                <h3 class="h1 text-info">Follow-up History:</h3>
+                <h3 class="h1 text-info">{% trans 'Follow-up History:' %}</h3>
                 <div class="row mt-4 justify-content-center">
                     <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Expert</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Report</th>
+                            <th scope="col">{% trans 'ID' %}</th>
+                            <th scope="col">{% trans 'Expert' %}</th>
+                            <th scope="col">{% trans 'Date' %}</th>
+                            <th scope="col">{% trans 'Report' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -141,7 +139,7 @@
                             {% endfor %}
                         {% else %}
                             <tr>
-                                <td class="text-dark bg-light" colspan="4" style="text-align: center">No Follow up</td>
+                                <td class="text-dark bg-light" colspan="4" style="text-align: center">{% trans 'No Follow up' %}</td>
                             </tr>
                         {% endif %}
                         </tbody>

@@ -1,8 +1,9 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 {% load l10n %}
 
 {# page title #}
-{% block page_title %}Edit Organization{% endblock %}
+{% block page_title %}{% trans 'Edit Organization' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -13,7 +14,7 @@
 {# page content #}
 {% block page_content %}
     {# page header #}
-    <h1 class="h1 text-info mb-3">Edit Organization : </h1>
+    <h1 class="h1 text-info mb-3">{% trans 'Edit Organization : ' %}</h1>
 
     {# form : edit organization #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
@@ -21,35 +22,35 @@
 
         {# organization province editing #}
         <div class="form-group">
-            <label for="province" class="text-info">Province : </label>
+            <label for="province" class="text-info">{% trans 'Province : ' %}</label>
             <input id="province" name="province" class="form-control text-primary" type="text"
                    value="{{ object.province }}" placeholder="Please Enter The Organization`s Province">
         </div>
 
         {# organization name editing #}
         <div class="form-group">
-            <label for="organization_name" class="text-info">Name : </label>
+            <label for="organization_name" class="text-info">{% trans 'Name : ' %}</label>
             <input id="organization_name" name="organization_name" class="form-control text-primary" type="text"
                    value="{{ object.organization_name }}" placeholder="Please Enter The Organization Name">
         </div>
 
         {# organization telephone editing #}
         <div class="form-group">
-            <label for="telephone" class="text-info">Telephone : </label>
+            <label for="telephone" class="text-info">{% trans 'Telephone : ' %}</label>
             <input id="telephone" name="telephone" class="form-control text-primary" type="text"
                    value="{{ object.telephone }}" placeholder="Please Enter The Organization Telephone">
         </div>
 
         {# organization workers quantity editing #}
         <div class="form-group">
-            <label for="workers_qty" class="text-info">Workers Quantity : </label>
+            <label for="workers_qty" class="text-info">{% trans 'Workers Quantity : ' %}</label>
             <input id="workers_qty" name="workers_qty" class="form-control text-primary" type="number"
                     value="{{ object.workers_qty|unlocalize }}"  placeholder="Please Enter The Organization`s Workers Quantity">
         </div>
 
         {# organization manufactures products editing #}
         <div class="form-group">
-            <label for="manufactured_product" class="text-info">Choose Manufactured Product : </label>
+            <label for="manufactured_product" class="text-info">{% trans 'Choose Manufactured Product : ' %}</label>
             <select multiple class="form-control" id="manufactured_product" name="manufactured_product">
                 {% for product in ManufacturedProducts %}
                     {% if product in object.manufactured_product.all %}
@@ -63,7 +64,7 @@
 
         {# organization representative fullname editing #}
         <div class="form-group">
-            <label for="representative_full_name" class="text-info">Representative Fullname : </label>
+            <label for="representative_full_name" class="text-info">{% trans 'Representative Fullname : ' %}</label>
             <input id="representative_full_name" name="representative_full_name" class="form-control text-primary"
                    type="text"
                    value="{{ object.representative_full_name }}"
@@ -72,7 +73,7 @@
 
         {# organization representative phone number editing #}
         <div class="form-group">
-            <label for="representative_phone_number" class="text-info">Representative Phone Number : </label>
+            <label for="representative_phone_number" class="text-info">{% trans 'Representative Phone Number : ' %}</label>
             <input id="representative_phone_number" name="representative_phone_number" class="form-control text-primary"
                    type="text"
                    value="{{ object.representative_phone_number }}"
@@ -81,7 +82,7 @@
 
         {# organization representative email editing #}
         <div class="form-group">
-            <label for="representative_email" class="text-info">Representative Email : </label>
+            <label for="representative_email" class="text-info">{% trans 'Representative Email : ' %}</label>
             <input id="representative_email" name="representative_email" class="form-control text-primary"
                    type="email"
                    value="{{ object.representative_email }}"
@@ -89,6 +90,6 @@
         </div>
 
         {# form submit button #}
-        <button class="btn btn-info mb-3" type="submit">Edit</button>
+        <button class="btn btn-info mb-3" type="submit">{% trans 'Edit' %}</button>
     </form>
 {% endblock %}

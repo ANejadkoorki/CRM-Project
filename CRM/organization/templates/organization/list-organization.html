@@ -1,7 +1,8 @@
 {% extends 'company/home-template.html' %}
+{% load i18n %}
 
 {# page title #}
-{% block page_title %}Organizations List{% endblock %}
+{% block page_title %}{% trans 'Organizations List' %}{% endblock %}
 
 {# this page nav-item activation #}
 {% block home_navactive %}
@@ -15,7 +16,7 @@
         <div class="col-12">
             {% block page_content %}
                 {# page header #}
-                <h1 class="h1 text-info mb-3">Organization`s List : </h1>
+                <h1 class="h1 text-info mb-3">{% trans 'Organization`s List : ' %}</h1>
 
                 {# organizations table #}
                 <div class="col">
@@ -23,11 +24,11 @@
                         <table class="table table-dark table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Organization Name</th>
-                                <th scope="col">Registrar</th>
-                                <th scope="col">Representative</th>
-                                <th scope="col">Operation</th>
+                                <th scope="col">{% trans 'ID' %}</th>
+                                <th scope="col">{% trans 'Organization Name' %}</th>
+                                <th scope="col">{% trans 'Registrar' %}</th>
+                                <th scope="col">{% trans 'Representative' %}</th>
+                                <th scope="col">{% trans 'Operation' %}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,10 +40,10 @@
                                     <td>{{ object.expert }}</td>
                                     <td>{{ object.representative_full_name }}</td>
                                     {% if request.user == object.expert %}
-                                        <td><a href="{% url 'sellProcess:followUp' object.pk %}">Record follow-up</a>
+                                        <td><a href="{% url 'sellProcess:followUp' object.pk %}">{% trans 'Record follow-up' %}</a>
                                         </td>
                                     {% else %}
-                                        <td><a href="#">No Permission</a></td>
+                                        <td><a href="#">{% trans 'No Permission' %}</a></td>
                                     {% endif %}
                                 </tr>
                             {% endfor %}
