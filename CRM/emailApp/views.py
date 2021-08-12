@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 
 from . import models
 from .tasks import send_email_task
+from django.utils.translation import ugettext as _
 from sellProcess import models as spmodels
 from organization import models as organmodels
 
@@ -44,8 +45,8 @@ def send_email_with_celery(request, pk):
 
     # response message :
     if email_result:
-        messages.success(request, 'Email Has Been Sent Successfully.')
+        messages.success(request, _('Email Has Been Sent Successfully.'))
     else:
-        messages.error(request, 'Sending Email Failed.')
+        messages.error(request, _('Sending Email Failed.'))
 
     return redirect('sellProcess:quote-list')

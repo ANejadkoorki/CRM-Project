@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from organization import models as organmodels
@@ -54,13 +55,13 @@ class AddQuote(LoginRequiredMixin, CreateView):
 
                     # saving each form (quote_item) to model QuoteItem
                     form.save()
-                messages.success(self.request, 'Quote Created Successfully.')
+                messages.success(self.request, _('Quote Created Successfully.'))
                 return redirect('sellProcess:add-quote')
             except:
-                messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
+                messages.error(self.request, _('Failed! Please Fill the Inputs Correctly.'))
                 return redirect('sellProcess:add-quote')
         else:
-            messages.error(self.request, 'Failed! Please Fill the Inputs Correctly.')
+            messages.error(self.request, _('Failed! Please Fill the Inputs Correctly.'))
             return redirect('sellProcess:add-quote')
 
 
@@ -121,13 +122,13 @@ class FollowUpView(LoginRequiredMixin, CreateView):
 
         return JsonResponse(data={
             'success': 'True',
-            'success_message': 'Record Has Been Saved Successfully.'
+            'success_message': _('Record Has Been Saved Successfully.')
         }, status=HTTP_201_CREATED)
 
     def form_invalid(self, form):
         return JsonResponse(data={
             'success': 'False',
-            'error_message': 'Failed! Please Fill The Input Correctly.'
+            'error_message': _('Failed! Please Fill The Input Correctly.')
         }, status=HTTP_400_BAD_REQUEST)
 
     def get_context_data(self, **kwargs):

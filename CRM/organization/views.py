@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, permissions
 from rest_framework.pagination import PageNumberPagination
@@ -31,11 +32,11 @@ class AddOrganization(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.expert = self.request.user
         form.save()
-        messages.success(self.request, 'The Organization Has Been Saved Successfully.')
+        messages.success(self.request, _('The Organization Has Been Saved Successfully.'))
         return redirect('organization:add-organization')
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Failed, Please Fill The Inputs Successfully.')
+        messages.error(self.request, _('Failed, Please Fill The Inputs Successfully.'))
         return redirect('organization:add-organization')
 
 
@@ -69,12 +70,12 @@ class EditOrganization(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, f"{self.request.POST.get('organization_name')} Has Been Updated Successfully.")
+        messages.success(self.request, _(f"{self.request.POST.get('organization_name')} Has Been Updated Successfully."))
         pk = self.get_object().pk
         return redirect('organization:organization-detail', pk)
 
     def form_invalid(self, form):
-        messages.success(self.request, f"Failed.Please Fill The Inputs Carefully.")
+        messages.success(self.request, _(f"Failed.Please Fill The Inputs Carefully."))
         pk = self.get_object().pk
         return redirect('organization:edit-organization', pk)
 
@@ -92,11 +93,11 @@ class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, f"{self.request.POST.get('name')} Saved Successfully.")
+        messages.success(self.request, _(f"{self.request.POST.get('name')} Saved Successfully."))
         return redirect('organization:add-organizations-product')
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Failed! Please Enter the Product Name Carefully.')
+        messages.error(self.request, _('Failed! Please Enter the Product Name Carefully.'))
         return redirect('organization:add-organizations-product')
 
 

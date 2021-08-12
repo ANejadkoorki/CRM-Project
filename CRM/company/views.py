@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_exempt
 from . import models
 from organization import models as organ_models
@@ -40,11 +41,11 @@ class AddCompanyProduct(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, f"{self.request.POST.get('product_name')} Has Been Saved Successfully.")
+        messages.success(self.request, _(f"{self.request.POST.get('product_name')} Has Been Saved Successfully."))
         return redirect('company:add-company-product')
 
     def form_invalid(self, form):
-        messages.error(self.request, "Failed. Please Fill The Inputs Correctly.")
+        messages.error(self.request, _("Failed. Please Fill The Inputs Correctly."))
         return redirect('company:add-company-product')
 
 
@@ -85,11 +86,11 @@ class EditCompanyProduct(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, f"{self.request.POST.get('product_name')} Has Been Updated Successfully.")
+        messages.success(self.request, _(f"{self.request.POST.get('product_name')} Has Been Updated Successfully."))
         pk = self.get_object().pk
         return redirect('company:company-product-detail', pk)
 
     def form_invalid(self, form):
-        messages.success(self.request, f"Failed.Please Fill The Inputs Carefully.")
+        messages.error(self.request, _(f"Failed.Please Fill The Inputs Carefully."))
         pk = self.get_object().pk
         return redirect('company:company-product-edit', pk)

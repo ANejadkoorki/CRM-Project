@@ -11,6 +11,7 @@ from . import forms, serializers
 
 # Create your views here.
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 from django.utils.http import is_safe_url
 from django.views.decorators.csrf import csrf_exempt
 
@@ -30,17 +31,17 @@ class ExpertLogin(FormView):
             login(self.request, user)
             next_url = self.request.GET.get('next', '/')
             if is_safe_url(next_url, settings.ALLOWED_HOSTS):
-                messages.success(self.request, f'{self.request.user.username} Have Been Logged in Successfully.')
+                messages.success(self.request, _(f'{self.request.user.username} Have Been Logged in Successfully.'))
                 return redirect(next_url)
             else:
-                messages.error(self.request, 'This url is not safe.')
+                messages.error(self.request, _('This url is not safe.'))
                 return redirect('/')
         else:
-            messages.error(self.request, 'The User Not Found.')
+            messages.error(self.request, _('The User Not Found.'))
             return redirect('experts:login')
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Please Enter your Information Correctly.')
+        messages.error(self.request, _('Please Enter your Information Correctly.'))
         return redirect('experts:login')
 
 
@@ -50,7 +51,7 @@ class ExpertLogout(RedirectView):
     """
 
     def get(self, request, *args, **kwargs):
-        messages.success(self.request, f'{self.request.user.username} Have Been Logged out Successfully.')
+        messages.success(self.request, _(f'{self.request.user.username} Have Been Logged out Successfully.'))
         logout(self.request)
         return redirect('company:home')
 
@@ -80,11 +81,11 @@ class ProfileEdit(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         user = self.get_object()
         form.save()
-        messages.success(self.request, f'User : {user.username} Details Updated Successfully.')
+        messages.success(self.request, _(f'User : {user.username} Details Updated Successfully.'))
         return redirect('experts:profile', user.pk)
 
     def form_invalid(self, form):
-        messages.error(self.request, 'Please Fill The Inputs Correctly.')
+        messages.error(self.request, _('Please Fill The Inputs Correctly.'))
         user_pk = self.get_object().pk
         return redirect('experts:edit-profile', user_pk)
 
