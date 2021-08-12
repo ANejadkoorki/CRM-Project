@@ -5,6 +5,8 @@ psycopg2-binary
 django-jalali
 django-rest-framework
 djangorestframework_simplejwt
+django-rest-auth
+djangorestframework-jwt
 pymemcache
 django-widget-tweaks
 weasyprint
