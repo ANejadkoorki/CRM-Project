@@ -31,7 +31,7 @@ class ExpertLogin(FormView):
             login(self.request, user)
             next_url = self.request.GET.get('next', '/')
             if is_safe_url(next_url, settings.ALLOWED_HOSTS):
-                messages.success(self.request, f"{self.request.user.username}{_('Have Been Logged in Successfully.')}")
+                messages.success(self.request, f"{self.request.user.username} {_('Have Been Logged in Successfully.')}")
                 return redirect(next_url)
             else:
                 messages.error(self.request, _('This url is not safe.'))
@@ -51,7 +51,7 @@ class ExpertLogout(RedirectView):
     """
 
     def get(self, request, *args, **kwargs):
-        messages.success(self.request, f"{self.request.user.username}{_('Have Been Logged out Successfully.')}")
+        messages.success(self.request, f"{self.request.user.username} {_('Have Been Logged out Successfully.')}")
         logout(self.request)
         return redirect('company:home')
 

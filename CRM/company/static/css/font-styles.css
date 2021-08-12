@@ -2,7 +2,7 @@
     font-family: "Sahel";
     font-style: normal;
     src: url("../fonts/sahel/Sahel-SemiBold.woff") format('woff'),
-         url("../fonts/sahel/Sahel-SemiBold.woff") format('woff');
+         url("../fonts/sahel/Sahel-SemiBold.woff2") format('woff2');
 
 }
 body {
@@ -26,4 +26,9 @@ p {
 
 .rtl {
     direction: rtl;
+}
+
+
+tr, th, tfoot, td {
+    font-family: Sahel, serif;
 }
