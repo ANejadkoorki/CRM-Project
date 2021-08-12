@@ -89,6 +89,9 @@ class QuoteItem(models.Model):
 
 
 class FollowUp(models.Model):
+    """
+        this model represents a FollowUp object
+    """
     description = models.TextField(verbose_name=_('Follow Up Description'))
     expert = models.ForeignKey(
         get_user_model(),

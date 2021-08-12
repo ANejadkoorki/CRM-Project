@@ -111,9 +111,14 @@ class FollowUpView(LoginRequiredMixin, CreateView):
     )
 
     def form_valid(self, form):
+        # filling the FollowUp model`s expert field with request.user
         form.instance.expert = self.request.user
+
+        # filling the FollowUp model`s organization field with (continue in next line)
+        # organization object with gotten pk in url querystring
         form.instance.organization = organmodels.Organization.objects.get(pk=self.kwargs['organization_pk'])
         form.save()
+
         return JsonResponse(data={
             'success': 'True',
             'success_message': 'Record Has Been Saved Successfully.'

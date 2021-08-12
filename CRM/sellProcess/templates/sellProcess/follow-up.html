@@ -17,11 +17,11 @@
     {# page header #}
     <h1 class="h1 text-info">Record Follow Up For {{ organization_obj.organization_name }} : </h1>
 
-    {# form : add organizations products #}
+    {# form : record follow up for organization #}
     <form class="mt-4 mb-3" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
-        {# organizations product name #}
+        {# follow up description #}
         <div class="form-group">
             <label for="description" class="text-info">Follow Up Description : </label>
             <textarea id="description" name="description" class="form-control text-primary" type="text" rows="5"
@@ -30,7 +30,7 @@
 
     </form>
 
-    {# form submit button #}
+    {# form record button #}
     <button class="btn btn-info mb-3" type="submit" id="record_btn">Record</button>
 
 
