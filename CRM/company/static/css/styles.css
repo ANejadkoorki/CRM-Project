@@ -1,3 +1,29 @@
-body{
+@font-face {
+    font-family: "Sahel";
+    font-style: normal;
+    src: url("../fonts/sahel/Sahel-SemiBold.woff") format('woff'),
+         url("../fonts/sahel/Sahel-SemiBold.woff") format('woff');
+
+}
+body {
+    font-family: Sahel, serif;
     background-color: #292b2c;
+}
+
+.nav-link {
+    font-family: Sahel, serif;
+}
+
+p {
+    font-family: Sahel, serif;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: Sahel, serif;
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl {
+    direction: rtl;
 }
