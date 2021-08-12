@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import ugettext as _
 from . import models
 
 # admin site header
@@ -16,6 +17,20 @@ class QuoteAdmin(admin.ModelAdmin):
         'expert',
     ]
 
+    list_display_links = [
+        'id',
+        'organization',
+    ]
+
+    search_fields = [
+        'organization__organization_name__icontains',
+        'expert__username__icontains',
+    ]
+
+    list_filter = [
+        'expert',
+    ]
+
 
 @admin.register(models.QuoteItem)
 class QuoteItemAdmin(admin.ModelAdmin):
@@ -24,11 +39,38 @@ class QuoteItemAdmin(admin.ModelAdmin):
     """
     list_display = [
         'id',
-        'quote',
         'product',
+        'quote',
         'price',
         'qty',
         'discount',
+    ]
+
+    list_display_links = [
+        'id',
+        'product',
+    ]
+
+    list_editable = [
+        'qty',
+        'discount',
+    ]
+
+    search_fields = [
+        'product__product_name__icontains',
+        'quote__organization__organization_name__icontains',
+    ]
+
+    list_filter = [
+        'quote',
+    ]
+
+    @admin.action(description=_('Set discount to 0'))
+    def set_discount_to_zero(modeladmin, request, queryset):
+        queryset.update(discount=0.0)
+
+    actions = [
+        set_discount_to_zero,
     ]
 
 
@@ -46,5 +88,18 @@ class FollowUpAdmin(admin.ModelAdmin):
     ]
 
     list_display_links = [
-        'organization'
+        'id',
+        'organization',
     ]
+
+    search_fields = [
+        'organization__organization_name__icontains',
+        'expert__username__icontains',
+    ]
+
+    list_filter = [
+        'organization',
+        'expert',
+    ]
+
+

@@ -33,6 +33,8 @@ class Organization(admin.ModelAdmin):
 
     list_editable = [
         'telephone',
+        'representative_full_name',
+        'representative_email',
     ]
 
     search_fields = [
@@ -42,6 +44,7 @@ class Organization(admin.ModelAdmin):
         'expert__username__icontains',
     ]
     list_filter = [
+        'province',
         'manufactured_product',
-        'expert'
+        'expert',
     ]

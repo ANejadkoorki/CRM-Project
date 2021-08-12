@@ -17,3 +17,13 @@ class EmailHistoryAdmin(admin.ModelAdmin):
         'receiver_email_address',
         'is_successful',
     ]
+
+    search_fields = [
+        'sender__username__icontains',
+        'receiver_email_address',
+    ]
+
+    list_filter = [
+        'sender',
+        'is_successful',
+    ]
