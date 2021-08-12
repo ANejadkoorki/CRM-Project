@@ -1,0 +1,273 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-12 22:58+0430\n"
+"PO-Revision-Date: 2021-08-12 22:33+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: organization/models.py:8
+msgid "This Landline number is Invalid."
+msgstr "شماره تلفن ثابت نادرست است."
+
+#: organization/models.py:10
+msgid "This Phone number is Invalid."
+msgstr "شماره موبایل نادرست است."
+
+#: organization/models.py:17
+msgid "Product name"
+msgstr "نام محصول"
+
+#: organization/models.py:27
+#: organization/templates/organization/organization-detail.html:48
+msgid "Province"
+msgstr "استان"
+
+#: organization/models.py:28
+msgid "Organization name"
+msgstr "نام سازمان"
+
+#: organization/models.py:30
+msgid "Organization telephone"
+msgstr "تلفن سازمان"
+
+#: organization/models.py:31
+#: organization/templates/organization/organization-detail.html:51
+msgid "Workers Quantity"
+msgstr "تعداد کارگران"
+
+#: organization/models.py:32
+msgid "Manufactured product"
+msgstr "محصولات تولیدی"
+
+#: organization/models.py:33
+msgid "Representative fullname"
+msgstr "نام و نام خانوادگی نماینده سازمان"
+
+#: organization/models.py:35
+msgid "Representative phone number"
+msgstr "تلفنهمراه نماینده سازمان"
+
+#: organization/models.py:36
+msgid "Representative email"
+msgstr "ایمیل نماینده سازمان"
+
+#: organization/models.py:37
+msgid "Creation time"
+msgstr "تاریخ ایجاد"
+
+#: organization/models.py:38
+#: organization/templates/organization/organization-detail.html:125
+msgid "Expert"
+msgstr "کارشناس فروش"
+
+#: organization/templates/organization/add-organization-template.html:5
+msgid "Add Organization"
+msgstr "ایجاد سازمان"
+
+#: organization/templates/organization/add-organization-template.html:17
+msgid "Add Your Organization : "
+msgstr "ایجاد سازمان "
+
+#: organization/templates/organization/add-organization-template.html:25
+#: organization/templates/organization/edit_organization.html:25
+msgid "Province : "
+msgstr "استان "
+
+#: organization/templates/organization/add-organization-template.html:32
+#: organization/templates/organization/edit_organization.html:32
+msgid "Name : "
+msgstr ""
+
+#: organization/templates/organization/add-organization-template.html:39
+#: organization/templates/organization/edit_organization.html:39
+msgid "Telephone : "
+msgstr "تلفن سازمان "
+
+#: organization/templates/organization/add-organization-template.html:46
+#: organization/templates/organization/edit_organization.html:46
+msgid "Workers Quantity : "
+msgstr "تعداد کارگران "
+
+#: organization/templates/organization/add-organization-template.html:53
+#: organization/templates/organization/edit_organization.html:53
+msgid "Choose Manufactured Product : "
+msgstr "محصولات تولیدی را انتخاب کنید "
+
+#: organization/templates/organization/add-organization-template.html:63
+#: organization/templates/organization/edit_organization.html:67
+msgid "Representative Fullname : "
+msgstr "نام و نام خانوادگی نماینده سازمان "
+
+#: organization/templates/organization/add-organization-template.html:71
+#: organization/templates/organization/edit_organization.html:76
+msgid "Representative Phone Number : "
+msgstr "تلفن همراه نماینده سازمان "
+
+#: organization/templates/organization/add-organization-template.html:79
+#: organization/templates/organization/edit_organization.html:85
+msgid "Representative Email : "
+msgstr "ایمیل نماینده سازمان "
+
+#: organization/templates/organization/add-organization-template.html:86
+#: organization/templates/organization/add-organizations-prod.html:30
+msgid "Add"
+msgstr "ایجاد"
+
+#: organization/templates/organization/add-organizations-prod.html:5
+msgid "Add Organizations Product"
+msgstr "ایجاد محصولات تولیدی سازمانها"
+
+#: organization/templates/organization/add-organizations-prod.html:16
+msgid "Add New Organizations Product : "
+msgstr "ایجاد محصولات تولیدی سازمان ها "
+
+#: organization/templates/organization/add-organizations-prod.html:24
+msgid "Product Name : "
+msgstr "نام محصول "
+
+#: organization/templates/organization/edit_organization.html:6
+msgid "Edit Organization"
+msgstr "ویرایش سازمان"
+
+#: organization/templates/organization/edit_organization.html:17
+msgid "Edit Organization : "
+msgstr "ویرایش سازمان "
+
+#: organization/templates/organization/edit_organization.html:93
+#: organization/templates/organization/organization-detail.html:38
+msgid "Edit"
+msgstr "ویرایش"
+
+#: organization/templates/organization/list-organization.html:5
+msgid "Organizations List"
+msgstr "لیست سازمان ها"
+
+#: organization/templates/organization/list-organization.html:19
+msgid "Organization`s List : "
+msgstr "لیست سازمان ها "
+
+#: organization/templates/organization/list-organization.html:27
+#: organization/templates/organization/organization-detail.html:124
+msgid "ID"
+msgstr "شناسه"
+
+#: organization/templates/organization/list-organization.html:28
+msgid "Organization Name"
+msgstr "نام سازمان"
+
+#: organization/templates/organization/list-organization.html:29
+msgid "Registrar"
+msgstr "ایجاد کننده"
+
+#: organization/templates/organization/list-organization.html:30
+msgid "Representative"
+msgstr "نماینده سازمان"
+
+#: organization/templates/organization/list-organization.html:31
+msgid "Operation"
+msgstr "عملیات"
+
+#: organization/templates/organization/list-organization.html:43
+msgid "Record follow-up"
+msgstr "ثبت پیگیری فروش"
+
+#: organization/templates/organization/list-organization.html:46
+msgid "No Permission"
+msgstr "عدم وجود دسترسی"
+
+#: organization/templates/organization/organization-detail.html:6
+msgid "Organizations Detail"
+msgstr "مشخصات سازمان"
+
+#: organization/templates/organization/organization-detail.html:23
+msgid "Organization Detail : "
+msgstr "مشخصات سازمان "
+
+#: organization/templates/organization/organization-detail.html:30
+msgid "Return to Previous Page"
+msgstr "بازگشت به صفحه قبل"
+
+#: organization/templates/organization/organization-detail.html:33
+msgid "Pro Forma Invoice Issuance"
+msgstr "صدور پیش فاکتور"
+
+#: organization/templates/organization/organization-detail.html:49
+msgid "telephone"
+msgstr "تلفن"
+
+#: organization/templates/organization/organization-detail.html:50
+msgid "Registered Date"
+msgstr "تاریخ ایجاد"
+
+#: organization/templates/organization/organization-detail.html:70
+msgid "Registrar(expert)"
+msgstr "ایجاد کننده(کارشناس فروش)"
+
+#: organization/templates/organization/organization-detail.html:71
+msgid "Manufactured Products"
+msgstr "محصولات تولیدی"
+
+#: organization/templates/organization/organization-detail.html:72
+msgid "Our Company Offers"
+msgstr "پیشنهادات شرکت ما"
+
+#: organization/templates/organization/organization-detail.html:98
+msgid "Representative Details:"
+msgstr "مشخصات نماینده سازمان :"
+
+#: organization/templates/organization/organization-detail.html:103
+msgid "Full Name"
+msgstr "نام و نام خانوادگی"
+
+#: organization/templates/organization/organization-detail.html:104
+msgid "Phone Number"
+msgstr "تلفن همراه"
+
+#: organization/templates/organization/organization-detail.html:105
+msgid "Email"
+msgstr "ایمیل"
+
+#: organization/templates/organization/organization-detail.html:119
+msgid "Follow-up History:"
+msgstr "تاریخچه پیگیری فروش:"
+
+#: organization/templates/organization/organization-detail.html:126
+msgid "Date"
+msgstr "تاریخ"
+
+#: organization/templates/organization/organization-detail.html:127
+msgid "Report"
+msgstr "گزارش"
+
+#: organization/templates/organization/organization-detail.html:142
+msgid "No Follow up"
+msgstr "عدم وجود پیگیری فروش"
+
+#: organization/views.py:35
+msgid "The Organization Has Been Saved Successfully."
+msgstr "سازمان با موفقیت ذخیره شد."
+
+#: organization/views.py:39
+msgid "Failed, Please Fill The Inputs Successfully."
+msgstr "لطفا جاهای خالی را با دقت کامل کنید."
+
+#: organization/views.py:78
+msgid "Failed.Please Fill The Inputs Carefully."
+msgstr "لطفا جاهای خالی را با دقت کامل کنید."
+
+#: organization/views.py:100
+msgid "Failed! Please Enter the Product Name Carefully."
+msgstr "لطفا نام محصول را با دقت کامل کنید."

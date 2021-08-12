@@ -70,7 +70,7 @@ class EditOrganization(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, _(f"{self.request.POST.get('organization_name')} Has Been Updated Successfully."))
+        messages.success(self.request, f"{self.request.POST.get('organization_name')}{_('Has Been Updated Successfully.')}")
         pk = self.get_object().pk
         return redirect('organization:organization-detail', pk)
 
@@ -93,7 +93,7 @@ class AddOrganizationsProduct(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, _(f"{self.request.POST.get('name')} Saved Successfully."))
+        messages.success(self.request, f"{self.request.POST.get('name')}{_('Saved Successfully.')}")
         return redirect('organization:add-organizations-product')
 
     def form_invalid(self, form):

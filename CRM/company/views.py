@@ -41,7 +41,7 @@ class AddCompanyProduct(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, _(f"{self.request.POST.get('product_name')} Has Been Saved Successfully."))
+        messages.success(self.request, f"{self.request.POST.get('product_name')}{_('Has Been Saved Successfully.')}")
         return redirect('company:add-company-product')
 
     def form_invalid(self, form):
@@ -86,7 +86,7 @@ class EditCompanyProduct(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, _(f"{self.request.POST.get('product_name')} Has Been Updated Successfully."))
+        messages.success(self.request, f"{self.request.POST.get('product_name')}{_('Has Been Updated Successfully.')}")
         pk = self.get_object().pk
         return redirect('company:company-product-detail', pk)
 
