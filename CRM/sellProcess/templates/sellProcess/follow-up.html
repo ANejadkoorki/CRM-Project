@@ -16,6 +16,7 @@
 {# page content #}
 {% block page_content %}
     {# page header #}
+    <a href="{% url 'organization:organization-list' %}" class="btn btn-info mb-3">{% trans 'Return To Pervious Page' %}</a>
     <h1 class="h1 text-info">{% trans 'Record Follow Up For ' %}{{ organization_obj.organization_name }} : </h1>
 
     {# form : record follow up for organization #}

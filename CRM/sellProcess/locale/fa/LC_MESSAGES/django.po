@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-12 22:58+0430\n"
-"PO-Revision-Date: 2021-08-12 22:46+0430\n"
+"POT-Creation-Date: 2021-08-13 09:26+0430\n"
+"PO-Revision-Date: 2021-08-13 09:23+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -99,14 +99,18 @@ msgid "Follow Up"
 msgstr "پیگیری فروش"
 
 #: sellProcess/templates/sellProcess/follow-up.html:19
+msgid "Return To Pervious Page"
+msgstr "بازگشت به صفحه قبل"
+
+#: sellProcess/templates/sellProcess/follow-up.html:20
 msgid "Record Follow Up For "
 msgstr "ثبت پیگیری فروش برای "
 
-#: sellProcess/templates/sellProcess/follow-up.html:27
+#: sellProcess/templates/sellProcess/follow-up.html:28
 msgid "Follow Up Description : "
 msgstr "توضیحات پیگیری فروش "
 
-#: sellProcess/templates/sellProcess/follow-up.html:35
+#: sellProcess/templates/sellProcess/follow-up.html:36
 msgid "Record"
 msgstr "ثبت"
 
@@ -115,99 +119,99 @@ msgid "Quote Detail"
 msgstr "مشخصات پیش فاکتور"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:27
-#: sellProcess/templates/sellProcess/quote-pdf.html:50
+#: sellProcess/templates/sellProcess/quote-pdf.html:48
 msgid "CRM System"
 msgstr "سیستم CRM"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:29
-#: sellProcess/templates/sellProcess/quote-pdf.html:52
+#: sellProcess/templates/sellProcess/quote-pdf.html:50
 msgid "Company Expert"
 msgstr "کارشناس فروش شرکت"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:31
-#: sellProcess/templates/sellProcess/quote-pdf.html:54
+#: sellProcess/templates/sellProcess/quote-pdf.html:52
 msgid "Date"
 msgstr "تاریخ"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:34
-#: sellProcess/templates/sellProcess/quote-pdf.html:57
+#: sellProcess/templates/sellProcess/quote-pdf.html:55
 msgid "Total Products Type"
 msgstr "تعداد کل انواع محصولات"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:47
-#: sellProcess/templates/sellProcess/quote-pdf.html:70
+#: sellProcess/templates/sellProcess/quote-pdf.html:68
 msgid "Customer Details : "
 msgstr "مشخصات مشتری "
 
 #: sellProcess/templates/sellProcess/quote-detail.html:49
 #: sellProcess/templates/sellProcess/quote-detail.html:86
-#: sellProcess/templates/sellProcess/quote-pdf.html:72
-#: sellProcess/templates/sellProcess/quote-pdf.html:109
+#: sellProcess/templates/sellProcess/quote-pdf.html:70
+#: sellProcess/templates/sellProcess/quote-pdf.html:107
 msgid "Name"
 msgstr "نام"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:51
-#: sellProcess/templates/sellProcess/quote-pdf.html:74
+#: sellProcess/templates/sellProcess/quote-pdf.html:72
 msgid "Representative Full Name"
 msgstr "نام و نام خانوادگی نماینده مشتری"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:55
-#: sellProcess/templates/sellProcess/quote-pdf.html:78
+#: sellProcess/templates/sellProcess/quote-pdf.html:76
 msgid "Province : "
 msgstr "استان "
 
 #: sellProcess/templates/sellProcess/quote-detail.html:56
-#: sellProcess/templates/sellProcess/quote-pdf.html:79
+#: sellProcess/templates/sellProcess/quote-pdf.html:77
 msgid "Representative Phone Number"
 msgstr "تلفن همراه نماینده مشتری"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:60
-#: sellProcess/templates/sellProcess/quote-pdf.html:83
+#: sellProcess/templates/sellProcess/quote-pdf.html:81
 msgid "Telephone"
 msgstr "تلفن"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:62
-#: sellProcess/templates/sellProcess/quote-pdf.html:85
+#: sellProcess/templates/sellProcess/quote-pdf.html:83
 msgid "Representative Email"
 msgstr "ایمیل نماینده مشتری"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:75
-#: sellProcess/templates/sellProcess/quote-pdf.html:98
+#: sellProcess/templates/sellProcess/quote-pdf.html:96
 msgid "Purchased Products"
 msgstr "محصولات خریداری شده"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:85
-#: sellProcess/templates/sellProcess/quote-pdf.html:108
+#: sellProcess/templates/sellProcess/quote-pdf.html:106
 msgid "Number"
 msgstr "شماره"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:87
-#: sellProcess/templates/sellProcess/quote-pdf.html:110
+#: sellProcess/templates/sellProcess/quote-pdf.html:108
 msgid "Taxability"
 msgstr "مالیات پذیری"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:88
-#: sellProcess/templates/sellProcess/quote-pdf.html:111
+#: sellProcess/templates/sellProcess/quote-pdf.html:109
 msgid "Quantity"
 msgstr "تعداد"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:89
-#: sellProcess/templates/sellProcess/quote-pdf.html:112
+#: sellProcess/templates/sellProcess/quote-pdf.html:110
 msgid "Base Price"
 msgstr "قیمت پایه"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:90
-#: sellProcess/templates/sellProcess/quote-pdf.html:113
+#: sellProcess/templates/sellProcess/quote-pdf.html:111
 msgid "Discount(Percent)"
 msgstr "تخفیف به درصد"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:91
-#: sellProcess/templates/sellProcess/quote-pdf.html:114
+#: sellProcess/templates/sellProcess/quote-pdf.html:112
 msgid "Total Cost"
 msgstr "جمع کل"
 
 #: sellProcess/templates/sellProcess/quote-detail.html:115
-#: sellProcess/templates/sellProcess/quote-pdf.html:138
+#: sellProcess/templates/sellProcess/quote-pdf.html:136
 msgid "Final amount payable :"
 msgstr "مبلغ کل قابل پرداخت :"
 
@@ -263,11 +267,11 @@ msgstr "نمایش مشخصات"
 msgid "Quote Pdf"
 msgstr "پیش فاکتور به pdf"
 
-#: sellProcess/templates/sellProcess/quote-pdf.html:124
+#: sellProcess/templates/sellProcess/quote-pdf.html:122
 msgid "YES"
 msgstr "بلی"
 
-#: sellProcess/templates/sellProcess/quote-pdf.html:126
+#: sellProcess/templates/sellProcess/quote-pdf.html:124
 msgid "NO"
 msgstr "خیر"
 
